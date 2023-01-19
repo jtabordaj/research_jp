@@ -1,0 +1,187 @@
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(plyr)
+library(readxl)
+library(writexl)
+library(haven)
+
+# diccionario datos  https://microdatos.dane.gov.co/catalog/599/data_dictionary 
+# salarios en https://www.salariominimocolombia.net/historico/ 
+
+# data sources
+readFilesCSV <- function(monthStart, monthEnd, survey){
+    if(survey == "ocupados"){
+    for(i in monthStart:monthEnd){
+        pathArea <- paste("./data/",theYear,"/",i,"/area_ocupados.csv", sep = "");
+        pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_ocupados.csv", sep = "");
+        pathResto <- paste("./data/",theYear,"/",i,"/resto_ocupados.csv", sep = "");
+        #assign(paste("ocupArea.",i, sep=""), read_csv2(pathArea)); 
+        assign(paste("ocupCabecera.",i, sep=""), read_csv(pathCabecera), envir=.GlobalEnv);
+        assign(paste("ocupResto.",i, sep=""), read_csv(pathResto), envir=.GlobalEnv);
+    }
+} else if(survey == "personas"){
+    for(i in monthStart:monthEnd){
+    #pathArea <- paste("./data/",theYear,"/",i,"/area_personas.csv", sep = "");
+    pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_personas.csv", sep = "");
+    pathResto <- paste("./data/",theYear,"/",i,"/resto_personas.csv", sep = "");
+    #assign(paste("ocupArea.",i, sep=""), read_csv2(pathArea)); 
+    assign(paste("personaCabecera.",i, sep=""), read_csv(pathCabecera), envir=.GlobalEnv);
+    assign(paste("personaResto.",i, sep=""), read_csv2(pathResto), envir=.GlobalEnv)
+    }
+}}
+
+
+readFilesCSV2 <- function(monthStart, monthEnd, survey){
+    if(survey == "ocupados"){
+    for(i in monthStart:monthEnd){
+        #pathArea <- paste("./data/",theYear,"/",i,"/area_ocupados.csv", sep = "");
+        pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_ocupados.csv", sep = "");
+        pathResto <- paste("./data/",theYear,"/",i,"/resto_ocupados.csv", sep = "");
+        #assign(paste("ocupArea.",i, sep=""), read_csv2(pathArea)); 
+        assign(paste("ocupCabecera.",i, sep=""), read_csv2(pathCabecera), envir=.GlobalEnv);
+        assign(paste("ocupResto.",i, sep=""), read_csv2(pathResto), envir=.GlobalEnv);
+    }} else if(survey == "personas"){
+    for(i in monthStart:monthEnd){
+        #pathArea <- paste("./data/",theYear,"/",i,"/area_personas.csv", sep = "");
+        pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_personas.csv", sep = "");
+        pathResto <- paste("./data/",theYear,"/",i,"/resto_personas.csv", sep = "");
+        #assign(paste("ocupArea.",i, sep=""), read_csv2(pathArea)); 
+        assign(paste("personaCabecera.",i, sep=""), read_csv2(pathCabecera), envir=.GlobalEnv);
+        assign(paste("personaResto.",i, sep=""), read_csv2(pathResto), envir=.GlobalEnv);
+    }}
+}
+
+readFilesDTA <- function(monthStart, monthEnd, survey){
+    if(survey == "ocupados"){
+    for(i in monthStart:monthEnd){
+        #pathArea <- paste("./data/",theYear,"/",i,"/area_ocupados.dta", sep = "");
+        pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_ocupados.dta", sep = "");
+        pathResto <- paste("./data/",theYear,"/",i,"/resto_ocupados.dta", sep = "");
+        #assign(paste("ocupArea.",i, sep=""), read_dta(pathArea)); 
+        assign(paste("ocupCabecera.",i, sep=""), read_dta(pathCabecera), envir=.GlobalEnv);
+        assign(paste("ocupResto.",i, sep=""), read_dta(pathResto), envir=.GlobalEnv);
+    }} else if(survey == "personas"){
+    for(i in 1:12){
+        pathArea <- paste("./data/",theYear,"/",i,"/area_personas.dta", sep = "");
+        pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_personas.dta", sep = "");
+        pathResto <- paste("./data/",theYear,"/",i,"/resto_personas.dta", sep = "");
+        #assign(paste("ocupArea.",i, sep=""), read_csv2(pathArea)); 
+        assign(paste("personaCabecera.",i, sep=""), read_dta(pathCabecera), envir=.GlobalEnv);
+        assign(paste("personaResto.",i, sep=""), read_dta(pathResto), envir=.GlobalEnv);
+}}
+}
+
+grabData <- function(dataType, monthStart, monthEnd, survey){
+    if(dataType == ".csv"){
+        readFilesCSV(monthStart, monthEnd, survey)
+    } else if(dataType == ".csv2"){
+        readFilesCSV2(monthStart, monthEnd, survey)
+    } else if(dataType == ".dta"){
+        readFilesDTA(monthStart, monthEnd, survey)
+    }
+}
+
+varNames <- c("DIRECTORIO", "directorio", "Directorio",
+    "SECUENCIA_P", "Secuencia_p", "secuencia_p",
+    "ORDEN", "Orden", "orden",
+    "P6500", "p6500",
+    "P6750", "p6750",
+    "P550", "p550",
+    "P7070", "p7070",
+    "P7090", "p7090", 
+    "P6422", "p6422",
+    "P6430", "p6430",
+    "P6800", "p6800",
+    "P7045", "p7045",
+    "P7130", "p7130",
+    "P7140S2", "p7140s2", "P7140s2",
+    "P7170s1", "P7170S1",
+    "RAMA2D", "Rama2d", "rama2d",
+    "RAMA4D", "Rama4d", "rama4d",
+    "RAMA2D_R4", "Rama2d_r4", "rama2d_r4",
+    "RAMA4D_R4", "Rama4d_r4", "rama4d_r4",
+    "DPTO", "dpto", "Dpto",
+    "Mes", "mes", "MES",
+    "fex_c_2011", "FEX_C_2011", "Fex_c_2011"
+    # "INGLABO", "Inglabo", "inglabo"
+)
+
+simplifier <- function(x){
+    x %>% select(any_of(varNames))
+}
+
+## Methods ocupados
+
+getFexp <- function(){
+    pathFexp <- paste("./data/",theYear,"/fexp.csv", sep = "")
+    fexp <- read.csv2(pathFexp)
+}
+
+getNationalWages <- function(){
+    dflist <- list()
+    for(df in allDataFrames){
+        dflist[[df]] <- get(df)
+    }
+    for (i in 1:length(dflist)) {
+        colnames(dflist[[i]]) <- toupper(colnames(ocupCabecera.9))
+    }
+    df_combined <- do.call(rbind, dflist)
+}
+
+limitanei <- function(prob){
+    data.frame(quantile(wages$maxWage, probs = prob))[1,1];
+}
+
+densityPlot <- function(data, axis, min, max){
+    ggplot(data, aes(x=axis)) + 
+    geom_density() +
+    scale_x_continuous(limits = c(min,max)) +
+    theme_bw()
+}
+
+# Methods personas
+
+varNamesPers <- c("DIRECTORIO", "directorio", "Directorio",
+    "SECUENCIA_P", "Secuencia_p", "secuencia_p",
+    "ORDEN", "Orden", "orden",
+    "P6020", "p6020",
+    "P6040", "p6040",
+    "P6070", "p6070",
+    "P6090", "p6090",
+    "P6210", "p6210",
+    "DPTO", "dpto", "Dpto"
+)
+
+simplifierPers <- function(x){
+    x %>% select(any_of(varNamesPers))
+}
+
+getPeople <- function(){
+    dflistPers <- list()
+    for(df in onlyPersonas){
+        dflistPers[[df]] <- get(df)
+    }
+    for (i in 1:length(dflistPers)) {
+        colnames(dflistPers[[i]]) <- toupper(colnames(personaCabecera.9))
+    }
+    df_combined <- do.call(rbind, dflistPers)
+}
+
+
+# cabecera = cabecera xd
+# resto = rural disperso
+# cabecera + resto = departamento
+# sumatoria(departamentos) = Nacional
+# sumatoria(area) = Nacional 13 Ciudades y AM
+# Si se va a simplificar para hallar cabecera o area hay que agregar la variable AREA
+# en 2007 el fexp viene por aparte
+
+for(i in 1:12){
+    pathArea <- paste("./data/",theYear,"/",i,"/area_ocupados.csv", sep = "");
+    pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_ocupados.csv", sep = "");
+    pathResto <- paste("./data/",theYear,"/",i,"/resto_ocupados.csv", sep = "");
+    #assign(paste("ocupArea.",i, sep=""), read_csv2(pathArea)); 
+    assign(paste("ocupCabecera.",i, sep=""), read_csv(pathCabecera));
+    assign(paste("ocupResto.",i, sep=""), read_csv(pathResto))
+}
