@@ -1,6 +1,6 @@
 source("./dependencies.R")
 theYear <- 2015
-grabData(".csv2", 1, 12, "ocupados")
+grabData(".csv2", 1, 12, "personas")
 
 
 allDataFrames <- names(which(unlist(eapply(.GlobalEnv,is.data.frame))))
