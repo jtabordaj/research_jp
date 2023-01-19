@@ -93,6 +93,7 @@ varNames <- c("DIRECTORIO", "directorio", "Directorio",
     "P6422", "p6422",
     "P6430", "p6430",
     "P6800", "p6800",
+    "P6920", "p6920",
     "P7045", "p7045",
     "P7130", "p7130",
     "P7140S2", "p7140s2", "P7140s2",
@@ -176,12 +177,3 @@ getPeople <- function(){
 # sumatoria(area) = Nacional 13 Ciudades y AM
 # Si se va a simplificar para hallar cabecera o area hay que agregar la variable AREA
 # en 2007 el fexp viene por aparte
-
-for(i in 1:12){
-    pathArea <- paste("./data/",theYear,"/",i,"/area_ocupados.csv", sep = "");
-    pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_ocupados.csv", sep = "");
-    pathResto <- paste("./data/",theYear,"/",i,"/resto_ocupados.csv", sep = "");
-    #assign(paste("ocupArea.",i, sep=""), read_csv2(pathArea)); 
-    assign(paste("ocupCabecera.",i, sep=""), read_csv(pathCabecera));
-    assign(paste("ocupResto.",i, sep=""), read_csv(pathResto))
-}
