@@ -28,7 +28,7 @@ readFilesCSV <- function(monthStart, monthEnd, survey){
         assign(paste("personasCabecera.",i, sep=""), read_csv(pathCabecera), envir=.GlobalEnv);
         assign(paste("personasResto.",i, sep=""), read_csv(pathResto), envir=.GlobalEnv)
     } else if(survey == "actividades"){
-        for(i in monthStart:monthEnd){
+    for(i in monthStart:monthEnd){
         #pathArea <- paste("./data/",theYear,"/",i,"/area_actividades.csv", sep = "");
         pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_actividades.csv", sep = "");
         pathResto <- paste("./data/",theYear,"/",i,"/resto_actividades.csv", sep = "");
@@ -37,14 +37,14 @@ readFilesCSV <- function(monthStart, monthEnd, survey){
         assign(paste("actividadesResto.",i, sep=""), read_csv(pathResto), envir=.GlobalEnv)
         }
     }} else if(survey == "ingresos"){
-        for(i in monthStart:monthEnd){
+    for(i in monthStart:monthEnd){
         #pathArea <- paste("./data/",theYear,"/",i,"/area_ingresos.csv", sep = "");
         pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_ingresos.csv", sep = "");
         pathResto <- paste("./data/",theYear,"/",i,"/resto_ingresos.csv", sep = "");
         #assign(paste("ocupArea.",i, sep=""), read_csv(pathArea)); 
         assign(paste("personaCabecera.",i, sep=""), read_csv(pathCabecera), envir=.GlobalEnv);
         assign(paste("personaResto.",i, sep=""), read_csv(pathResto), envir=.GlobalEnv)
-        }}
+    }}
 }
 
 
@@ -66,7 +66,7 @@ readFilesCSV2 <- function(monthStart, monthEnd, survey){
         assign(paste("personasCabecera.",i, sep=""), read_csv2(pathCabecera), envir=.GlobalEnv);
         assign(paste("personasResto.",i, sep=""), read_csv2(pathResto), envir=.GlobalEnv)
     } else if(survey == "actividades"){
-        for(i in monthStart:monthEnd){
+    for(i in monthStart:monthEnd){
         #pathArea <- paste("./data/",theYear,"/",i,"/area_actividades.csv", sep = "");
         pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_actividades.csv", sep = "");
         pathResto <- paste("./data/",theYear,"/",i,"/resto_actividades.csv", sep = "");
@@ -75,14 +75,14 @@ readFilesCSV2 <- function(monthStart, monthEnd, survey){
         assign(paste("actividadesResto.",i, sep=""), read_csv2(pathResto), envir=.GlobalEnv)
         }
     }} else if(survey == "ingresos"){
-        for(i in monthStart:monthEnd){
+    for(i in monthStart:monthEnd){
         #pathArea <- paste("./data/",theYear,"/",i,"/area_ingresos.csv", sep = "");
         pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_ingresos.csv", sep = "");
         pathResto <- paste("./data/",theYear,"/",i,"/resto_ingresos.csv", sep = "");
         #assign(paste("ingresosArea.",i, sep=""), read_csv2(pathArea)); 
         assign(paste("ingresosCabecera.",i, sep=""), read_csv2(pathCabecera), envir=.GlobalEnv);
         assign(paste("ingresosResto.",i, sep=""), read_csv2(pathResto), envir=.GlobalEnv)
-        }}
+    }}
 }
 
 readFilesDTA <- function(monthStart, monthEnd, survey){
@@ -95,7 +95,7 @@ readFilesDTA <- function(monthStart, monthEnd, survey){
         assign(paste("ocupCabecera.",i, sep=""), read_dta(pathCabecera), envir=.GlobalEnv);
         assign(paste("ocupResto.",i, sep=""), read_dta(pathResto), envir=.GlobalEnv);
     }} else if(survey == "personas"){
-    for(i in 1:12){
+    for(i in monthStart:monthEnd){
         pathArea <- paste("./data/",theYear,"/",i,"/area_personas.dta", sep = "");
         pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_personas.dta", sep = "");
         pathResto <- paste("./data/",theYear,"/",i,"/resto_personas.dta", sep = "");
@@ -103,22 +103,22 @@ readFilesDTA <- function(monthStart, monthEnd, survey){
         assign(paste("personasCabecera.",i, sep=""), read_dta(pathCabecera), envir=.GlobalEnv);
         assign(paste("personasResto.",i, sep=""), read_dta(pathResto), envir=.GlobalEnv);
     }} else if(survey == "actividades"){
-        for(i in monthStart:monthEnd){
+    for(i in monthStart:monthEnd){
         #pathArea <- paste("./data/",theYear,"/",i,"/area_actividades.dta", sep = "");
         pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_actividades.dta", sep = "");
         pathResto <- paste("./data/",theYear,"/",i,"/resto_actividades.dta", sep = "");
         #assign(paste("actividadesArea.",i, sep=""), read_dta(pathArea)); 
         assign(paste("actividadesCabecera.",i, sep=""), read_dta(pathCabecera), envir=.GlobalEnv);
         assign(paste("actividadesResto.",i, sep=""), read_dta(pathResto), envir=.GlobalEnv)
-        }} else if(survey == "ingresos"){
-        for(i in monthStart:monthEnd){
+    }} else if(survey == "ingresos"){
+    for(i in monthStart:monthEnd){
         pathArea <- paste("./data/",theYear,"/",i,"/area_ingresos.dta", sep = "");
         pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_ingresos.dta", sep = "");
         pathResto <- paste("./data/",theYear,"/",i,"/resto_ingresos.dta", sep = "");
         #assign(paste("ingresosArea.",i, sep=""), read_dta(pathArea)); 
         assign(paste("ingresosCabecera.",i, sep=""), read_dta(pathCabecera), envir=.GlobalEnv);
         assign(paste("ingresosResto.",i, sep=""), read_dta(pathResto), envir=.GlobalEnv)
-        }}
+    }}
 }
 
 grabData <- function(survey, dataType, monthStart, monthEnd){
