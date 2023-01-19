@@ -1,6 +1,6 @@
 source("./dependencies.R")
 theYear <- 2015
-grabData(".csv2", 1, 12, "personas")
+grabData("personas", ".csv2", 1, 12)
 
 
 allDataFrames <- names(which(unlist(eapply(.GlobalEnv,is.data.frame))))
@@ -16,7 +16,7 @@ wages$FEX_C_2011 <- as.numeric(wages$FEX_C_2011)
 
 wages$RAMA4D <- as.numeric(wages$RAMA4D)
 
-rownames(wages) <- c(1:nrow(wages)) # nolint # nolint
+rownames(wages) <- c(1:nrow(wages))
 wages[is.na(wages)] <- 0
 wages[wages == Inf] <- 0
 
