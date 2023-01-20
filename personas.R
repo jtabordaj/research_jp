@@ -16,9 +16,6 @@ personas[is.na(personas)] <- 0
 personas[personas == Inf] <- 0
 
 
-mergeCriteria <- c("DIRECTORIO", "SECUENCIA_P", "ORDEN", "DPTO")
-data <- inner_join(wages, personas, by = mergeCriteria)
-
 # Export
 
-write_xlsx(data, paste("./output/personas",theYear,".xlsx", sep = ""))
+write_xlsx(personas, paste("./output/personas",theYear,".xlsx", sep = ""))

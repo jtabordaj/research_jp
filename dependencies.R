@@ -197,7 +197,7 @@ standardizeTitlesPers <- function(){
         dflistPers[[df]] <- get(df)
     }
     for (i in 1:length(dflistPers)) {
-        colnames(dflistPers[[i]]) <- toupper(colnames(personaCabecera.9))
+        colnames(dflistPers[[i]]) <- toupper(colnames(personasCabecera.9))
     }
     df_combined <- do.call(rbind, dflistPers)
 }
