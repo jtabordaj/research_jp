@@ -27,7 +27,7 @@ readFilesCSV <- function(monthStart, monthEnd, survey){
         #assign(paste("personasArea.",i, sep=""), read_csv(pathArea)); 
         assign(paste("personasCabecera.",i, sep=""), read_csv(pathCabecera), envir=.GlobalEnv);
         assign(paste("personasResto.",i, sep=""), read_csv(pathResto), envir=.GlobalEnv)
-    } else if(survey == "actividades"){
+    }} else if(survey == "actividades"){
     for(i in monthStart:monthEnd){
         #pathArea <- paste("./data/",theYear,"/",i,"/area_actividades.csv", sep = "");
         pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_actividades.csv", sep = "");
@@ -35,8 +35,7 @@ readFilesCSV <- function(monthStart, monthEnd, survey){
         #assign(paste("actividadesArea.",i, sep=""), read_csv(pathArea)); 
         assign(paste("actividadesCabecera.",i, sep=""), read_csv(pathCabecera), envir=.GlobalEnv);
         assign(paste("actividadesResto.",i, sep=""), read_csv(pathResto), envir=.GlobalEnv)
-        }
-    }} else if(survey == "ingresos"){
+        }} else if(survey == "ingresos"){
     for(i in monthStart:monthEnd){
         #pathArea <- paste("./data/",theYear,"/",i,"/area_ingresos.csv", sep = "");
         pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_ingresos.csv", sep = "");
@@ -65,16 +64,15 @@ readFilesCSV2 <- function(monthStart, monthEnd, survey){
         #assign(paste("personasArea.",i, sep=""), read_csv2(pathArea)); 
         assign(paste("personasCabecera.",i, sep=""), read_csv2(pathCabecera), envir=.GlobalEnv);
         assign(paste("personasResto.",i, sep=""), read_csv2(pathResto), envir=.GlobalEnv)
-    } else if(survey == "actividades"){
+    }} else if(survey == "actividades"){
     for(i in monthStart:monthEnd){
         #pathArea <- paste("./data/",theYear,"/",i,"/area_actividades.csv", sep = "");
         pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_actividades.csv", sep = "");
         pathResto <- paste("./data/",theYear,"/",i,"/resto_actividades.csv", sep = "");
         #assign(paste("actividadesArea.",i, sep=""), read_csv2(pathArea)); 
         assign(paste("actividadesCabecera.",i, sep=""), read_csv2(pathCabecera), envir=.GlobalEnv);
-        assign(paste("actividadesResto.",i, sep=""), read_csv2(pathResto), envir=.GlobalEnv)
-        }
-    }} else if(survey == "ingresos"){
+        assign(paste("actividadesResto.",i, sep=""), read_csv2(pathResto), envir=.GlobalEnv) 
+        }} else if(survey == "ingresos"){
     for(i in monthStart:monthEnd){
         #pathArea <- paste("./data/",theYear,"/",i,"/area_ingresos.csv", sep = "");
         pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_ingresos.csv", sep = "");
@@ -148,7 +146,7 @@ varNames <- c("DIRECTORIO", "directorio", "Directorio",
     "P6800", "p6800",
     "P7045", "p7045",
     "P7090", "p7090",
-    "P7140S2", "p7140s2", "P7140s2", "p7140s2"
+    "P7140S2", "p7140s2", "P7140s2", "p7140s2",
     "P6430", "p6430",
     "RAMA2D", "Rama2d", "rama2d",
     "RAMA4D", "Rama4d", "rama4d",
@@ -163,12 +161,7 @@ simplifier <- function(x){
     x %>% select(any_of(varNames))
 }
 
-getFexp <- function(){
-    pathFexp <- paste("./data/",theYear,"/fexp.csv", sep = "")
-    fexp <- read.csv2(pathFexp)
-}
-
-getNationalWages <- function(){
+standardizeTitles <- function(){
     dflist <- list()
     for(df in allDataFrames){
         dflist[[df]] <- get(df)
@@ -220,8 +213,8 @@ varNamesActiv <- c("DIRECTORIO", "directorio", "Directorio",
 varNamesIngr <- c("DIRECTORIO", "directorio", "Directorio",
     "SECUENCIA_P", "Secuencia_p", "secuencia_p",
     "ORDEN", "Orden", "orden",
-    "P7500S2A1", "p7500s2a1", "P7500S2a1", "P7500s2A1", "p7500S2a1", "p7500S2A1"
-    "P7500S3A1", "p7500s3a1", "P7500S3a1", "P7500s3A1", "p7500S3a1", "p7500S3A1"
+    "P7500S2A1", "p7500s2a1", "P7500S2a1", "P7500s2A1", "p7500S2a1", "p7500S2A1",
+    "P7500S3A1", "p7500s3a1", "P7500S3a1", "P7500s3A1", "p7500S3a1", "p7500S3A1",
     "P7510S1A1", "p7510s1a1", "P7510S1a1", "P7510s1A1", "p7510S1a1", "p7510S1A1",
     "P7510S2A1", "p7510s2a1", "P7510S2a1", "P7510s2A1", "p7510S2a1", "p7510S2A1",
     "P7510S3A1", "p7510s3a1", "P7510S3a1", "P7510s3A1", "p7510S3a1", "p7510S3A1"

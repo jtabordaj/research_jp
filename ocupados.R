@@ -1,60 +1,53 @@
 source("./dependencies.R")
-theYear <- 2015
+theYear <- 2021
 
-grabData("personas", ".csv2", 1, 12)
-
-
+grabData("ocupados", ".dta", 1, 12)
 allDataFrames <- names(which(unlist(eapply(.GlobalEnv,is.data.frame))))
 
+# Data cleaning
 for(i in allDataFrames){
     assign(paste(i, sep=""), simplifier(get(i))); 
 }
+ocupados <- standardizeTitles()
+rownames(ocupados) <- c(1:nrow(ocupados))
 
-wages <- getNationalWages()
+# Validations
+ocupados[is.na(ocupados)] <- 0
+ocupados[ocupados == Inf] <- 0
 
-wages$FEX_C_2011 <- gsub("\\d\\.\\d\\d\\d\\.\\d\\d\\d\\.\\d\\d\\d$?", "", wages$FEX_C_2011)
-wages$FEX_C_2011 <- as.numeric(wages$FEX_C_2011)
-
-wages$RAMA4D <- as.numeric(wages$RAMA4D)
-
-rownames(wages) <- c(1:nrow(wages))
-wages[is.na(wages)] <- 0
-wages[wages == Inf] <- 0
-
-if(theYear >= 2007 && theYear <= 2008){
-wages <- wages %>% 
-    mutate(INGLABO = P6500 + P6750 + P550 + P7070)
-}
+# Editing data
+ocupados$FEX_C_2011 <- gsub("\\d\\.\\d\\d\\d\\.\\d\\d\\d\\.\\d\\d\\d$?", "", ocupados$FEX_C_2011)
+ocupados$FEX_C_2011 <- as.numeric(ocupados$FEX_C_2011)
 
 if(theYear != 2020){
-wages <-  wages %>%
-    mutate(maxWage = ((pmax(P6500, P6750, P550, P7070))/1000))
+ocupados <-  ocupados %>%
+    mutate(maxWage = ((pmax(P6500, P6750, P550, P7070))))
 } else {
-    wages <- wages %>%
-   mutate(maxWage = ((pmax(P6500, P6750))/1000))
+    ocupados <- ocupados %>%
+   mutate(maxWage = ((pmax(P6500, P6750))))
 }
 
-write_xlsx(wages, paste("./wages",theYear,".xlsx", sep = ""))
+write_xlsx(ocupados, paste("./ocupados",theYear,".xlsx", sep = ""))
 
-wages <- wages %>% filter(maxWage > 0)
+ocupados <- ocupados %>% filter(maxWage > 0)
 
 fexp <- getFexp()
 fexp$FEX_C_2011 <- gsub("\\d\\.\\d\\d\\d\\.\\d\\d\\d\\.\\d\\d\\d$?", "", fexp$FEX_DPTO_C)
 
 mergeCriteria <- c("DIRECTORIO", "SECUENCIA_P", "ORDEN")
 
-wages <- inner_join(wages, fexp, by = mergeCriteria)
+ocupados <- inner_join(ocupados, fexp, by = mergeCriteria)
 
 
 ### PUEDE SER UTIL MAS ADELANTE
-# wages9010 <- wages %>% filter(maxWage >= limitanei(.1) & maxWage <= limitanei(.9))
-# densityPlot(wages, wages$maxWage, limitanei(.1), limitanei(.9))
-# theMedian <- summary(wages9010$maxWage)[3]
-# theMean <- summary(wages9010$maxWage)[4]
-# shareBelow <- length(which(wages9010$maxWage < minWage/1000))
-# shareMiddle <- length(which(wages9010$maxWage >= minWage/1000 & wages9010$maxWage <= 2*(minWage/1000)))
-# shareUpper <- length(which(wages9010$maxWage > 2*(minWage/1000) & wages9010$maxWage <= 3*(minWage/1000)))
-# shareRich <- length(which(wages9010$maxWage > 3*(minWage/1000)))
+# ocupados9010 <- ocupados %>% filter(maxWage >= limitanei(.1) & maxWage <= limitanei(.9))
+# densityPlot(ocupados, ocupados$maxWage, limitanei(.1), limitanei(.9))
+# theMedian <- summary(ocupados9010$maxWage)[3]
+# theMean <- summary(ocupados9010$maxWage)[4]
+# shareBelow <- length(which(ocupados9010$maxWage < minWage/1000))
+# shareMiddle <- length(which(ocupados9010$maxWage >= minWage/1000 & ocupados9010$maxWage <= 2*(minWage/1000)))
+# shareUpper <- length(which(ocupados9010$maxWage > 2*(minWage/1000) & ocupados9010$maxWage <= 3*(minWage/1000)))
+# shareRich <- length(which(ocupados9010$maxWage > 3*(minWage/1000)))
 # response <- paste("El salario minimo es",minWage, ", la media es", theMean, ", la mediana es", theMedian,", hay",shareBelow,"personas con un salario inferior al minimo,",
 #     shareMiddle,"personas con uno entre 1 y 2 salarios minimos, ",
 #     shareUpper ,"personas entre 2 y 3 SM, y",
