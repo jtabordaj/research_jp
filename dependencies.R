@@ -10,6 +10,8 @@ library(haven)
 # salarios en https://www.salariominimocolombia.net/historico/ 
 
 # data sources
+theYear <- 2021
+
 readFilesCSV <- function(monthStart, monthEnd, survey){
     if(survey == "ocupados"){
     for(i in monthStart:monthEnd){

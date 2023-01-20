@@ -1,5 +1,4 @@
 source("./dependencies.R")
-theYear <- 2021
 
 grabData("ocupados", ".dta", 1, 12)
 allDataFrames <- names(which(unlist(eapply(.GlobalEnv, is.data.frame))))
