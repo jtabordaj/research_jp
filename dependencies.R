@@ -189,7 +189,7 @@ simplifierPers <- function(x){
     x %>% select(any_of(varNamesPers))
 }
 
-getPeople <- function(){
+standardizeTitlesPers <- function(){
     dflistPers <- list()
     for(df in onlyPersonas){
         dflistPers[[df]] <- get(df)

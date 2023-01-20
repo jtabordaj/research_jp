@@ -1,22 +1,23 @@
-grabData(".csv", 1, 12, "personas")
+source("./dependencies.R")
 
+
+grabData("personas", ".dta", 1, 12)
 allDataFrames <- names(which(unlist(eapply(.GlobalEnv,is.data.frame))))
-
 onlyPersonas <- allDataFrames[grep("^persona", allDataFrames)]
 
-
+#Data Cleaning
 for(i in onlyPersonas){
     assign(paste(i, sep=""), simplifierPers(get(i))); 
 }
+personas <- standardizeTitlesPers()
+rownames(personas) <- c(1:nrow(personas))
 
-people <- getPeople()
-
-rownames(people) <- c(1:nrow(people))
-people[is.na(people)] <- 0
-people[people == Inf] <- 0
+# Validations
+personas[is.na(personas)] <- 0
+personas[personas == Inf] <- 0
 
 
 mergeCriteria <- c("DIRECTORIO", "SECUENCIA_P", "ORDEN", "DPTO")
-data <- inner_join(wages, people, by = mergeCriteria)
+data <- inner_join(wages, personas, by = mergeCriteria)
 
 write_xlsx(data, paste("./data",theYear,".xlsx", sep = ""))
