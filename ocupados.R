@@ -27,19 +27,24 @@ ocupados <-  ocupados %>%
    mutate(maxWage = ((pmax(P6500, P6750))))
 }
 
-write_xlsx(ocupados, paste("./ocupados",theYear,".xlsx", sep = ""))
-
 ocupados <- ocupados %>% filter(maxWage > 0)
+ocupados <- ocupados %>% filter(maxWage != 98 & maxWage != 99) # Si responde 98 o 99 en salario no sirve pues no sabe
 
-fexp <- getFexp()
-fexp$FEX_C_2011 <- gsub("\\d\\.\\d\\d\\d\\.\\d\\d\\d\\.\\d\\d\\d$?", "", fexp$FEX_DPTO_C)
+# Export
 
-mergeCriteria <- c("DIRECTORIO", "SECUENCIA_P", "ORDEN")
+write_xlsx(ocupados, paste("./output/ocupados",theYear,".xlsx", sep = ""))
 
-ocupados <- inner_join(ocupados, fexp, by = mergeCriteria)
+
 
 
 ### PUEDE SER UTIL MAS ADELANTE
+
+
+## En caso tal el fexp sea caracter y no se pueda hacer coerce
+# df$FEX_C_2011 <- gsub("\\d\\.\\d\\d\\d\\.\\d\\d\\d\\.\\d\\d\\d$?", "", df$FEX_DPTO_C)
+
+##Plots
+
 # ocupados9010 <- ocupados %>% filter(maxWage >= limitanei(.1) & maxWage <= limitanei(.9))
 # densityPlot(ocupados, ocupados$maxWage, limitanei(.1), limitanei(.9))
 # theMedian <- summary(ocupados9010$maxWage)[3]
