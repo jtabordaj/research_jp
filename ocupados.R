@@ -5,9 +5,9 @@ allDataFrames <- names(which(unlist(eapply(.GlobalEnv, is.data.frame))))
 
 # Data cleaning
 for(i in allDataFrames){
-    assign(paste(i, sep=""), simplifier(get(i))); 
+    assign(paste(i, sep=""), simplifierOcupados(get(i))); 
 }
-ocupados <- standardizeTitles()
+ocupados <- standardizeTitlesOcup()
 rownames(ocupados) <- c(1:nrow(ocupados))
 
 # Validations

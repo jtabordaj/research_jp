@@ -6,7 +6,7 @@ onlyPersonas <- allDataFrames[grep("^personas", allDataFrames)]
 
 #Data Cleaning
 for(i in onlyPersonas){
-    assign(paste(i, sep=""), simplifierPers(get(i))); 
+    assign(paste(i, sep=""), simplifierPersonas(get(i))); 
 }
 personas <- standardizeTitlesPers()
 rownames(personas) <- c(1:nrow(personas))

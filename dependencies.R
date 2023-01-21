@@ -133,7 +133,7 @@ grabData <- function(survey, dataType, monthStart, monthEnd){
 
 ## Methods ocupados
 
-varNames <- c("DIRECTORIO", "directorio", "Directorio",
+varNamesOcup <- c("DIRECTORIO", "directorio", "Directorio",
     "SECUENCIA_P", "Secuencia_p", "secuencia_p",
     "ORDEN", "Orden", "orden",
     "P6920", "p6920",
@@ -159,11 +159,11 @@ varNames <- c("DIRECTORIO", "directorio", "Directorio",
     "fex_c_2011", "FEX_C_2011", "Fex_c_2011"
 )
 
-simplifier <- function(x){
-    x %>% select(any_of(varNames))
+simplifierOcupados <- function(x){
+    x %>% select(any_of(varNamesOcup))
 }
 
-standardizeTitles <- function(){
+standardizeTitlesOcup <- function(){
     dflist <- list()
     for(df in allDataFrames){
         dflist[[df]] <- get(df)
@@ -187,19 +187,19 @@ varNamesPers <- c("DIRECTORIO", "directorio", "Directorio",
     "DPTO", "dpto", "Dpto"
 )
 
-simplifierPers <- function(x){
+simplifierPersonas <- function(x){
     x %>% select(any_of(varNamesPers))
 }
 
 standardizeTitlesPers <- function(){
-    dflistPers <- list()
+    dflistIng <- list()
     for(df in onlyPersonas){
-        dflistPers[[df]] <- get(df)
+        dflistIng[[df]] <- get(df)
     }
-    for (i in 1:length(dflistPers)) {
-        colnames(dflistPers[[i]]) <- toupper(colnames(personasCabecera.9))
+    for (i in 1:length(dflistIng)) {
+        colnames(dflistIng[[i]]) <- toupper(colnames(personasCabecera.9))
     }
-    df_combined <- do.call(rbind, dflistPers)
+    df_combined <- do.call(rbind, dflistIng)
 }
 
 # Methods actividades
@@ -209,6 +209,21 @@ varNamesActiv <- c("DIRECTORIO", "directorio", "Directorio",
     "ORDEN", "Orden", "orden",
     "P7480S3A1", "p7480S3A1", "P7480s3A1", "p7480s3A1"
 )
+
+simplifierActividades <- function(x){
+    x %>% select(any_of(varNamesActiv))
+}
+
+standardizeTitlesAct <- function(){
+    dflistAct <- list()
+    for(df in onlyActividades){
+        dflistAct[[df]] <- get(df)
+    }
+    for (i in 1:length(dflistAct)) {
+        colnames(dflistAct[[i]]) <- toupper(colnames(actividadesCabecera.9))
+    }
+    df_combined <- do.call(rbind, dflistAct)
+}
 
 # Methods ingreso
 
@@ -221,6 +236,21 @@ varNamesIngr <- c("DIRECTORIO", "directorio", "Directorio",
     "P7510S2A1", "p7510s2a1", "P7510S2a1", "P7510s2A1", "p7510S2a1", "p7510S2A1",
     "P7510S3A1", "p7510s3a1", "P7510S3a1", "P7510s3A1", "p7510S3a1", "p7510S3A1"
 )
+
+simplifierIngresos <- function(x){
+    x %>% select(any_of(varNamesIngr))
+}
+
+standardizeTitlesIng <- function(){
+    dflistIng <- list()
+    for(df in onlyIngresos){
+        dflistIng[[df]] <- get(df)
+    }
+    for (i in 1:length(dflistIng)) {
+        colnames(dflistIng[[i]]) <- toupper(colnames(ingresosCabecera.9))
+    }
+    df_combined <- do.call(rbind, dflistIng)
+}
 
 # Methods plot
 
