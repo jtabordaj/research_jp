@@ -15,6 +15,23 @@ rownames(personas) <- c(1:nrow(personas))
 personas[is.na(personas)] <- 0
 personas[personas == Inf] <- 0
 
+# Editing data
+
+personas <- personas %>% mutate(segmentoEdad = ifelse(P6040 <= 30, 1,
+    ifelse(P6040 > 30 & P6040 <= 40, 2, 
+    ifelse(P6040 > 40 & P6040 <= 50, 3,
+    ifelse(P6040 > 50 & P6040 <= 60, 4,
+    ifelse(P6040 > 60, 5, 0)
+    ))))
+)
+personas <- personas %>% mutate(tienePareja = ifelse(P6070 == 1 | P6070 == 2 | P6070 == 3, 1, 0))
+personas <- personas %>% mutate(segmentoEducativo = ifelse(P6210 == 0 | 
+    P6210 == 1 | 
+    P6210 == 2 |
+    P6210 == 3, 1,
+    ifelse(P6210 == 4 | P6210 == 5, 2,
+    ifelse(P6210 == 6, 3, 0)) 
+))
 
 # Export
 

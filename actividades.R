@@ -18,4 +18,4 @@ actividades[actividades == Inf] <- 0
 # Editing Data
 
 actividades <- actividades %>% filter(P7480S3A1 != 98 & P7480S3A1 != 99) # Si responde 98 o 99 en transferencia no sirve pues no sabe
-
+actividades <- actividades %>% mutate(horasHogar = P7480S3A1)

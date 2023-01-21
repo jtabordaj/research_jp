@@ -28,6 +28,13 @@ ocupados <-  ocupados %>%
 
 ocupados <- ocupados %>% filter(maxWage > 0)
 ocupados <- ocupados %>% filter(maxWage != 98 & maxWage != 99) # Si responde 98 o 99 en salario no sirve pues no sabe
+ocupados <- ocupados %>% mutate(conformeContrato = ifelse(P6422 == 1, 1, 0)) # 1 Si
+ocupados <- ocupados %>% mutate(quiereCambiar = ifelse(P7130 == 1, 1, 0)) # 1 Si
+ocupados <- ocupados %>% mutate(conformeTrabajo = ifelse(P7170S1 == 1, 1, 0)) # 1 Si
+ocupados <- ocupados %>% mutate(ingresosTrabajo = INGLABO) # Mensual
+ocupados <- ocupados %>% mutate(horasTrabajo = P6800) # Semanal
+ocupados <- ocupados %>% mutate(subempleadoHoras = ifelse(P7090 == 1, 1, 0)) # 1 Si
+ocupados <- ocupados %>% mutate(subempleadoIngresos = ifelse(P7140S2 == 1, 1, 0)) # 1 Si
 
 # Export
 
