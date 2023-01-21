@@ -35,6 +35,12 @@ ocupados <- ocupados %>% mutate(ingresosTrabajo = INGLABO) # Mensual
 ocupados <- ocupados %>% mutate(horasTrabajo = P6800) # Semanal
 ocupados <- ocupados %>% mutate(subempleadoHoras = ifelse(P7090 == 1, 1, 0)) # 1 Si
 ocupados <- ocupados %>% mutate(subempleadoIngresos = ifelse(P7140S2 == 1, 1, 0)) # 1 Si
+ocupados <- ocupados %>% mutate(posicionOcupacional = ifelse(P6430 == 1 | P6430 == 3 | P6430 == 6 | P6430 == 7 | P6430 == 8, 1,
+    ifelse(P6430 == 2, 2,
+    ifelse(P6430 == 4, 3, 
+    ifelse(P6430 == 5, 4, 
+    ifelse(P6430 == 9, 5, 5))))  
+))
 
 # Export
 
