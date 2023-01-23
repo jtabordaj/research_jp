@@ -1,6 +1,6 @@
 source("./dependencies.R")
 
-grabData("actividades", ".dta", 1, 12)
+grabData("actividades", ".csv2", 1, 12)
 allDataFrames <- names(which(unlist(eapply(.GlobalEnv,is.data.frame))))
 onlyActividades <- allDataFrames[grep("^actividades", allDataFrames)]
 
@@ -27,6 +27,7 @@ actividadesWrite <- c("DIRECTORIO",
     "horasHogar"
 )
 
-writeActividades <- ocupados
+writeActividades <- actividades
 writeActividades <- writeActividades %>% select(all_of(actividadesWrite))
 write_xlsx(writeActividades, paste("./output/actividades",theYear,".xlsx", sep = ""))
+paste("Wrote ",substitute(actividades)," at ./output/actividades",theYear,".xslx", sep = "")

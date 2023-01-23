@@ -1,6 +1,6 @@
 source("./dependencies.R")
 
-grabData("ocupados", ".dta", 1, 12)
+grabData("ocupados", ".csv2", 1, 12)
 allDataFrames <- names(which(unlist(eapply(.GlobalEnv, is.data.frame))))
 
 # Data cleaning
@@ -41,7 +41,20 @@ ocupados <- ocupados %>% mutate(posicionOcupacional = ifelse(P6430 == 1 | P6430 
     ifelse(P6430 == 5, 4, 
     ifelse(P6430 == 9, 5, 5))))  
 ))
+ocupados <- ocupados %>% mutate(cotizaPension = ifelse(P6920 == 1 | P6920 == 3, 1, 0)) # 1 Si
 
+if(theYear != 2021){
+ocupados$RAMA2D <- as.numeric(ocupados$RAMA2D)
+ocupados <- ocupados %>% mutate(actividadEconomica = ifelse(RAMA2D >= 01 & RAMA2D <= 05 ,"AtB",
+    ifelse(RAMA2D >= 10 & RAMA2D <= 14, "C",
+    ifelse(RAMA2D >= 15 & RAMA2D <= 37,"D",
+    ifelse(RAMA2D >= 40 & RAMA2D <= 41, "E",
+    ifelse(RAMA2D == 45, "F",
+    ifelse(RAMA2D >= 50 & RAMA2D <= 55, "GtH",
+    ifelse(RAMA2D >= 60 & RAMA2D <= 64, "I",
+    ifelse(RAMA2D >= 65 & RAMA2D <= 74, "JtK",
+    ifelse(RAMA2D >= 75 & RAMA2D <= 93, "LtQ", "Otro")))))))))
+)} else if(theYear == 2021){
 ocupados$RAMA2D_R4 <- as.numeric(ocupados$RAMA2D_R4)
 ocupados <- ocupados %>% mutate(actividadEconomica = ifelse(RAMA2D_R4 >= 01 & RAMA2D_R4 <= 03, "AtB",
     ifelse(RAMA2D_R4 >= 05 & RAMA2D_R4 <= 09, "C",
@@ -50,12 +63,13 @@ ocupados <- ocupados %>% mutate(actividadEconomica = ifelse(RAMA2D_R4 >= 01 & RA
     ifelse(RAMA2D_R4 >= 41 & RAMA2D_R4 <= 43, "F",
     ifelse(RAMA2D_R4 >= 45 & RAMA2D_R4 <= 47 | RAMA2D_R4 >= 55 & RAMA2D_R4 <= 56, "GtH",
     ifelse(RAMA2D_R4 >= 49 & RAMA2D_R4 <= 53 | RAMA2D_R4 >= 58 & RAMA2D_R4 <= 63, "I",
-    ifelse(RAMA2D_R4 >= 64 & RAMA2D_R4 <= 75, "JtK",
+    ifelse(RAMA2D_R4 >= 64 & RAMA2D_R4 <= 82, "JtK",
     ifelse(RAMA2D_R4 >= 84 & RAMA2D_R4 <= 98 & RAMA2D_R4 != 92, "LtQ", "Otro")))))))))
-)
+)}
 
 # https://www.colombia.com/colombia-info/departamentos
 
+ocupados$DPTO <- ocupados$DPTO %>% as.numeric()
 ocupados <- ocupados %>% mutate(region = ifelse(DPTO == 08 | DPTO == 13 | DPTO == 23 | DPTO == 47 | DPTO == 20 | DPTO == 44 | DPTO == 70, "Caribe",
     ifelse(DPTO == 05 | DPTO == 15 | DPTO == 17 | DPTO == 25 | DPTO == 41 | DPTO == 54 | DPTO == 63 | DPTO == 66 | DPTO == 68 | DPTO == 08 | DPTO == 73 | DPTO == 11, "Central",
     ifelse(DPTO == 19 | DPTO == 27 | DPTO == 52 | DPTO == 76, "Pacifico",
@@ -67,7 +81,6 @@ ocupados <- ocupados %>% mutate(region = ifelse(DPTO == 08 | DPTO == 13 | DPTO =
 ocupadosWrite <- c("DIRECTORIO", 
     "SECUENCIA_P", 
     "ORDEN", 
-    "maxWage", 
     "conformeContrato", 
     "quiereCambiar", 
     "conformeTrabajo", 
@@ -76,6 +89,7 @@ ocupadosWrite <- c("DIRECTORIO",
     "horasTrabajo", 
     "subempleadoHoras", 
     "subempleadoIngresos",
+    "cotizaPension",
     "posicionOcupacional",
     "region"
 )
@@ -83,8 +97,7 @@ ocupadosWrite <- c("DIRECTORIO",
 writeOcupados <- ocupados
 writeOcupados <- writeOcupados %>% select(all_of(ocupadosWrite))
 write_xlsx(writeOcupados, paste("./output/ocupados",theYear,".xlsx", sep = ""))
-
-
+paste("Wrote ",substitute(ocupados)," at ./output/ocupados",theYear,".xslx", sep = "")
 
 
 ### PUEDE SER UTIL MAS ADELANTE

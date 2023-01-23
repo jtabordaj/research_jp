@@ -10,7 +10,7 @@ library(haven)
 # salarios en https://www.salariominimocolombia.net/historico/ 
 
 # data sources
-theYear <- 2021
+theYear <- 2012
 
 readFilesCSV <- function(monthStart, monthEnd, survey){
     if(survey == "ocupados"){
@@ -57,7 +57,7 @@ readFilesCSV2 <- function(monthStart, monthEnd, survey){
         pathResto <- paste("./data/",theYear,"/",i,"/resto_ocupados.csv", sep = "");
         #assign(paste("ocupArea.",i, sep=""), read_csv2(pathArea)); 
         assign(paste("ocupCabecera.",i, sep=""), read_csv2(pathCabecera), envir=.GlobalEnv);
-        assign(paste("ocupResto.",i, sep=""), read_cs2(pathResto), envir=.GlobalEnv);
+        assign(paste("ocupResto.",i, sep=""), read_csv2(pathResto), envir=.GlobalEnv);
     }} else if(survey == "personas"){
     for(i in monthStart:monthEnd){
         #pathArea <- paste("./data/",theYear,"/",i,"/area_personas.csv", sep = "");
@@ -144,7 +144,7 @@ varNamesOcup <- c("DIRECTORIO", "directorio", "Directorio",
     "P7070", "p7070",
     "P6750", "p6750",
     "P550", "p550",
-    "INGLABO", "inglabo",
+    "INGLABO", "inglabo", "Inglabo",
     "P6800", "p6800",
     "P7090", "p7090",
     "P7140S2", "p7140s2", "P7140s2", "p7140s2",
@@ -206,7 +206,7 @@ standardizeTitlesPers <- function(){
 varNamesActiv <- c("DIRECTORIO", "directorio", "Directorio",
     "SECUENCIA_P", "Secuencia_p", "secuencia_p",
     "ORDEN", "Orden", "orden",
-    "P7480S3A1", "p7480S3A1", "P7480s3A1", "p7480s3A1"
+    "P7480S3A1", "p7480S3A1", "P7480s3A1", "p7480s3A1", "P7480s3a1"
 )
 
 simplifierActividades <- function(x){
@@ -229,15 +229,15 @@ standardizeTitlesAct <- function(){
 varNamesIngr <- c("DIRECTORIO", "directorio", "Directorio",
     "SECUENCIA_P", "Secuencia_p", "secuencia_p",
     "ORDEN", "Orden", "orden",
-    "P7500S1A1", "p7500s1a1", "P7500S1a1", "P7500s1A1", "p7500S1a1", "p7500S1A1",
-    "P7500S2A1", "p7500s2a1", "P7500S2a1", "P7500s2A1", "p7500S2a1", "p7500S2A1",
-    "P7500S3A1", "p7500s3a1", "P7500S3a1", "P7500s3A1", "p7500S3a1", "p7500S3A1",
-    "P7510S1A1", "p7510s1a1", "P7510S1a1", "P7510s1A1", "p7510S1a1", "p7510S1A1",
-    "P7510S2A1", "p7510s2a1", "P7510S2a1", "P7510s2A1", "p7510S2a1", "p7510S2A1",
-    "P7510S3A1", "p7510s3a1", "P7510S3a1", "P7510s3A1", "p7510S3a1", "p7510S3A1",
-    "P7510S5A1", "p7510s5a1", "P7510S5a1", "P7510s5A1", "p7510S5a1", "p7510S5A1",
-    "P7510S6A1", "p7510s6a1", "P7510S6a1", "P7510s6A1", "p7510S6a1", "p7510S6A1",
-    "P7510S7A1", "p7510s7a1", "P7510S7a1", "P7510s7A1", "p7510S7a1", "p7510S7A1"
+    "P7500S1A1", "p7500s1a1", "P7500S1a1", "P7500s1A1", "p7500S1a1", "p7500S1A1", "P7500s1a1",
+    "P7500S2A1", "p7500s2a1", "P7500S2a1", "P7500s2A1", "p7500S2a1", "p7500S2A1", "P7500s2a1",
+    "P7500S3A1", "p7500s3a1", "P7500S3a1", "P7500s3A1", "p7500S3a1", "p7500S3A1", "P7500s3a1",
+    "P7510S1A1", "p7510s1a1", "P7510S1a1", "P7510s1A1", "p7510S1a1", "p7510S1A1", "P7510s1a1",
+    "P7510S2A1", "p7510s2a1", "P7510S2a1", "P7510s2A1", "p7510S2a1", "p7510S2A1", "P7510s2a1",
+    "P7510S3A1", "p7510s3a1", "P7510S3a1", "P7510s3A1", "p7510S3a1", "p7510S3A1", "P7510s3a1",
+    "P7510S5A1", "p7510s5a1", "P7510S5a1", "P7510s5A1", "p7510S5a1", "p7510S5A1", "P7510s5a1",
+    "P7510S6A1", "p7510s6a1", "P7510S6a1", "P7510s6A1", "p7510S6a1", "p7510S6A1", "P7510s6a1",
+    "P7510S7A1", "p7510s7a1", "P7510S7a1", "P7510s7A1", "p7510S7a1", "p7510S7A1", "P7510s7a1"
 )
 
 simplifierIngresos <- function(x){

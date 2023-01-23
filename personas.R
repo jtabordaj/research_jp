@@ -1,6 +1,6 @@
 source("./dependencies.R")
 
-grabData("personas", ".dta", 1, 12)
+grabData("personas", ".csv2", 1, 12)
 allDataFrames <- names(which(unlist(eapply(.GlobalEnv,is.data.frame))))
 onlyPersonas <- allDataFrames[grep("^personas", allDataFrames)]
 
@@ -32,16 +32,19 @@ personas <- personas %>% mutate(segmentoEducativo = ifelse(P6210 == 0 |
     ifelse(P6210 == 4 | P6210 == 5, 2,
     ifelse(P6210 == 6, 3, 0)) 
 ))
+personas <- personas %>% mutate(afiliadoSalud = ifelse(P6090 == 1, 1, 0)) # 1 Si
 
 # Export
 personasWrite <- c("DIRECTORIO", 
     "SECUENCIA_P", 
     "ORDEN", 
     "segmentoEdad",
-    "tienePareja"
-    "segmentoEducativo"
+    "tienePareja",
+    "segmentoEducativo",
+    "afiliadoSalud"
 )
 
 writePersonas <- personas
 writePersonas <- writePersonas %>% select(all_of(personasWrite))
-write_xlsx(personas, paste("./output/personas",theYear,".xlsx", sep = ""))
+write_xlsx(writePersonas, paste("./output/personas",theYear,".xlsx", sep = ""))
+paste("Wrote ",substitute(personas)," at ./output/personas",theYear,".xslx", sep = "")
