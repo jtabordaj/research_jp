@@ -42,9 +42,47 @@ ocupados <- ocupados %>% mutate(posicionOcupacional = ifelse(P6430 == 1 | P6430 
     ifelse(P6430 == 9, 5, 5))))  
 ))
 
-# Export
+ocupados$RAMA2D_R4 <- as.numeric(ocupados$RAMA2D_R4)
+ocupados <- ocupados %>% mutate(actividadEconomica = ifelse(RAMA2D_R4 >= 01 & RAMA2D_R4 <= 03, "AtB",
+    ifelse(RAMA2D_R4 >= 05 & RAMA2D_R4 <= 09, "C",
+    ifelse(RAMA2D_R4 >= 10 & RAMA2D_R4 <= 33, "D",
+    ifelse(RAMA2D_R4 >= 35 & RAMA2D_R4 <= 39, "E",
+    ifelse(RAMA2D_R4 >= 41 & RAMA2D_R4 <= 43, "F",
+    ifelse(RAMA2D_R4 >= 45 & RAMA2D_R4 <= 47 | RAMA2D_R4 >= 55 & RAMA2D_R4 <= 56, "GtH",
+    ifelse(RAMA2D_R4 >= 49 & RAMA2D_R4 <= 53 | RAMA2D_R4 >= 58 & RAMA2D_R4 <= 63, "I",
+    ifelse(RAMA2D_R4 >= 64 & RAMA2D_R4 <= 75, "JtK",
+    ifelse(RAMA2D_R4 >= 84 & RAMA2D_R4 <= 98 & RAMA2D_R4 != 92, "LtQ", "Otro")))))))))
+)
 
-write_xlsx(ocupados, paste("./output/ocupados",theYear,".xlsx", sep = ""))
+# https://www.colombia.com/colombia-info/departamentos
+
+ocupados <- ocupados %>% mutate(region = ifelse(DPTO == 08 | DPTO == 13 | DPTO == 23 | DPTO == 47 | DPTO == 20 | DPTO == 44 | DPTO == 70, "Caribe",
+    ifelse(DPTO == 05 | DPTO == 15 | DPTO == 17 | DPTO == 25 | DPTO == 41 | DPTO == 54 | DPTO == 63 | DPTO == 66 | DPTO == 68 | DPTO == 08 | DPTO == 73 | DPTO == 11, "Central",
+    ifelse(DPTO == 19 | DPTO == 27 | DPTO == 52 | DPTO == 76, "Pacifico",
+    ifelse(DPTO == 50 | DPTO == 18 | DPTO == 19, "Oriental", NA))))
+)
+
+
+# Export
+ocupadosWrite <- c("DIRECTORIO", 
+    "SECUENCIA_P", 
+    "ORDEN", 
+    "maxWage", 
+    "conformeContrato", 
+    "quiereCambiar", 
+    "conformeTrabajo", 
+    "ingresosTrabajo", 
+    "actividadEconomica", 
+    "horasTrabajo", 
+    "subempleadoHoras", 
+    "subempleadoIngresos",
+    "posicionOcupacional",
+    "region"
+)
+
+writeOcupados <- ocupados
+writeOcupados <- writeOcupados %>% select(all_of(ocupadosWrite))
+write_xlsx(writeOcupados, paste("./output/ocupados",theYear,".xlsx", sep = ""))
 
 
 
@@ -54,20 +92,4 @@ write_xlsx(ocupados, paste("./output/ocupados",theYear,".xlsx", sep = ""))
 
 ## En caso tal el fexp sea caracter y no se pueda hacer coerce
 # df$FEX_C_2011 <- gsub("\\d\\.\\d\\d\\d\\.\\d\\d\\d\\.\\d\\d\\d$?", "", df$FEX_DPTO_C)
-
-##Plots
-
-# ocupados9010 <- ocupados %>% filter(maxWage >= limitanei(.1) & maxWage <= limitanei(.9))
-# densityPlot(ocupados, ocupados$maxWage, limitanei(.1), limitanei(.9))
-# theMedian <- summary(ocupados9010$maxWage)[3]
-# theMean <- summary(ocupados9010$maxWage)[4]
-# shareBelow <- length(which(ocupados9010$maxWage < minWage/1000))
-# shareMiddle <- length(which(ocupados9010$maxWage >= minWage/1000 & ocupados9010$maxWage <= 2*(minWage/1000)))
-# shareUpper <- length(which(ocupados9010$maxWage > 2*(minWage/1000) & ocupados9010$maxWage <= 3*(minWage/1000)))
-# shareRich <- length(which(ocupados9010$maxWage > 3*(minWage/1000)))
-# response <- paste("El salario minimo es",minWage, ", la media es", theMean, ", la mediana es", theMedian,", hay",shareBelow,"personas con un salario inferior al minimo,",
-#     shareMiddle,"personas con uno entre 1 y 2 salarios minimos, ",
-#     shareUpper ,"personas entre 2 y 3 SM, y",
-#     shareRich,"personas con mas de 3 SM", sep = " "
-# )
 

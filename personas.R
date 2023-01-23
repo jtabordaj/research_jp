@@ -24,7 +24,7 @@ personas <- personas %>% mutate(segmentoEdad = ifelse(P6040 <= 30, 1,
     ifelse(P6040 > 60, 5, 0)
     ))))
 )
-personas <- personas %>% mutate(tienePareja = ifelse(P6070 == 1 | P6070 == 2 | P6070 == 3, 1, 0))
+personas <- personas %>% mutate(tienePareja = ifelse(P6070 == 1 | P6070 == 2 | P6070 == 3, 1, 0)) # 1 Si
 personas <- personas %>% mutate(segmentoEducativo = ifelse(P6210 == 0 | 
     P6210 == 1 | 
     P6210 == 2 |
@@ -34,5 +34,14 @@ personas <- personas %>% mutate(segmentoEducativo = ifelse(P6210 == 0 |
 ))
 
 # Export
+personasWrite <- c("DIRECTORIO", 
+    "SECUENCIA_P", 
+    "ORDEN", 
+    "segmentoEdad",
+    "tienePareja"
+    "segmentoEducativo"
+)
 
+writePersonas <- personas
+writePersonas <- writePersonas %>% select(all_of(personasWrite))
 write_xlsx(personas, paste("./output/personas",theYear,".xlsx", sep = ""))
