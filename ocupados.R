@@ -60,7 +60,7 @@ ocupados <- ocupados %>% mutate(actividadEconomica = ifelse(RAMA2D >= 01 & RAMA2
     ifelse(RAMA2D >= 50 & RAMA2D <= 55, "GtH",
     ifelse(RAMA2D >= 60 & RAMA2D <= 64, "I",
     ifelse(RAMA2D >= 65 & RAMA2D <= 74, "JtK",
-    ifelse(RAMA2D >= 75 & RAMA2D <= 93, "LtQ", "Otro")))))))))
+    ifelse(RAMA2D >= 75 & RAMA2D <= 97, "LtQ", "Otro")))))))))
 )} else if(theYear == 2021){
 ocupados$RAMA2D_R4 <- as.numeric(ocupados$RAMA2D_R4)
 ocupados <- ocupados %>% mutate(actividadEconomica = ifelse(RAMA2D_R4 >= 01 & RAMA2D_R4 <= 03, "AtB",
@@ -78,9 +78,9 @@ ocupados <- ocupados %>% mutate(actividadEconomica = ifelse(RAMA2D_R4 >= 01 & RA
 
 ocupados$DPTO <- ocupados$DPTO %>% as.numeric()
 ocupados <- ocupados %>% mutate(region = ifelse(DPTO == 08 | DPTO == 13 | DPTO == 23 | DPTO == 47 | DPTO == 20 | DPTO == 44 | DPTO == 70, "Caribe",
-    ifelse(DPTO == 05 | DPTO == 15 | DPTO == 17 | DPTO == 25 | DPTO == 41 | DPTO == 54 | DPTO == 63 | DPTO == 66 | DPTO == 68 | DPTO == 08 | DPTO == 73 | DPTO == 11, "Central",
+    ifelse(DPTO == 05 | DPTO == 15 | DPTO == 17 | DPTO == 25 | DPTO == 41 | DPTO == 54 | DPTO == 63 | DPTO == 66 | DPTO == 68 | DPTO == 73 | DPTO == 11, "Central",
     ifelse(DPTO == 19 | DPTO == 27 | DPTO == 52 | DPTO == 76, "Pacifico",
-    ifelse(DPTO == 50 | DPTO == 18 | DPTO == 19, "Oriental", NA))))
+    ifelse(DPTO == 50 | DPTO == 18, "Oriental", NA))))
 )
 
 

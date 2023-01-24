@@ -27,3 +27,4 @@ data2012 <- inner_join(data2012, ingresos2012.xlsx, by = joinCriteria )
 write_xlsx(data2012, paste("./2012.xlsx", sep = ""))
 write_xlsx(data2021, paste("./2021.xlsx", sep = ""))
 
+
