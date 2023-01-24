@@ -5,6 +5,7 @@ library(plyr)
 library(readxl)
 library(writexl)
 library(haven)
+library(purrr)
 
 # diccionario datos  https://microdatos.dane.gov.co/catalog/599/data_dictionary 
 # salarios en https://www.salariominimocolombia.net/historico/ 
@@ -129,6 +130,14 @@ grabData <- function(survey, dataType, monthStart, monthEnd){
     } else if(dataType == ".dta"){
         readFilesDTA(monthStart, monthEnd, survey)
     }
+}
+
+grabOutputs <- function(){
+   outputFiles <- list.files("./output") 
+   for(i in outputFiles){
+    path <- paste("./output/",i, sep = "")
+    assign(paste(i, sep = ""), read_xlsx(path), envir = .GlobalEnv)
+   }
 }
 
 ## Methods ocupados
