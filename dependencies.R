@@ -11,7 +11,7 @@ library(purrr)
 # salarios en https://www.salariominimocolombia.net/historico/ 
 
 # data sources
-theYear <- 2021
+theYear <- 2012
 
 readFilesCSV <- function(monthStart, monthEnd, survey){
     if(survey == "ocupados"){
