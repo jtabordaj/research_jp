@@ -25,14 +25,15 @@ personas <- personas %>% mutate(segmentoEdad = ifelse(P6040 <= 30, 1,
     ))))
 )
 personas <- personas %>% mutate(tienePareja = ifelse(P6070 == 1 | P6070 == 2 | P6070 == 3, 1, 0)) # 1 Si
+
 personas <- personas %>% mutate(segmentoEducativo = ifelse(P6210 == 0 | 
     P6210 == 1 | 
     P6210 == 2 |
     P6210 == 3, 1,
     ifelse(P6210 == 4 | P6210 == 5, 2,
-    ifelse(P6210 == 6, 3, 0)) 
+    ifelse(P6210 == 6, 3, 1)) 
 ))
-personas <- personas %>% mutate(afiliadoSalud = ifelse(P6090 == 1, 1, 0)) # 1 Si
+personas <- personas %>% mutate(afiliadoSalud = ifelse(P6090 == 1, 0, 1)) # 0 Si esta afiliado
 
 # Export
 personasWrite <- c("DIRECTORIO", 

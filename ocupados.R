@@ -1,6 +1,6 @@
 source("./dependencies.R")
 
-grabData("ocupados", ".csv2", 1, 12)
+grabData("ocupados", ".dta", 1, 12)
 allDataFrames <- names(which(unlist(eapply(.GlobalEnv, is.data.frame))))
 
 # Data cleaning
@@ -28,20 +28,27 @@ ocupados <-  ocupados %>%
 
 ocupados <- ocupados %>% filter(maxWage > 0)
 ocupados <- ocupados %>% filter(maxWage != 98 & maxWage != 99) # Si responde 98 o 99 en salario no sirve pues no sabe
-ocupados <- ocupados %>% mutate(conformeContrato = ifelse(P6422 == 1, 1, 0)) # 1 Si
-ocupados <- ocupados %>% mutate(quiereCambiar = ifelse(P7130 == 1, 1, 0)) # 1 Si
-ocupados <- ocupados %>% mutate(conformeTrabajo = ifelse(P7170S1 == 1, 1, 0)) # 1 Si
+ocupados <- ocupados %>% mutate(conformeContrato = ifelse(P6422 == 1, 0, 1)) # 0 Si esta conforme con el contrato
+ocupados <- ocupados %>% mutate(quiereCambiar = ifelse(P7130 == 1, 0, 1)) # 0 Si desea cambiar de trabajo
+
+if(theYear == 2012){
+    ocupados <- ocupados %>% mutate(conformeTrabajo = ifelse(P7170S1 != 4, 1, 0))
+ # 0 nvl 4
+} else {
+   ocupados <- ocupados %>% mutate(conformeTrabajo = ifelse(P7170S1 == 1, 1, 0)) # 0 si esta conforme
+}
+
 ocupados <- ocupados %>% mutate(ingresosTrabajo = INGLABO) # Mensual
 ocupados <- ocupados %>% mutate(horasTrabajo = P6800) # Semanal
-ocupados <- ocupados %>% mutate(subempleadoHoras = ifelse(P7090 == 1, 1, 0)) # 1 Si
-ocupados <- ocupados %>% mutate(subempleadoIngresos = ifelse(P7140S2 == 1, 1, 0)) # 1 Si
+ocupados <- ocupados %>% mutate(subempleadoHoras = ifelse(P7090 == 1, 1, 0)) # 1 Si esta subempleado
+ocupados <- ocupados %>% mutate(subempleadoIngresos = ifelse(P7140S2 == 1, 1, 0)) # 1 Si esta subempleado
 ocupados <- ocupados %>% mutate(posicionOcupacional = ifelse(P6430 == 1 | P6430 == 3 | P6430 == 6 | P6430 == 7 | P6430 == 8, 1,
     ifelse(P6430 == 2, 2,
     ifelse(P6430 == 4, 3, 
     ifelse(P6430 == 5, 4, 
     ifelse(P6430 == 9, 5, 5))))  
 ))
-ocupados <- ocupados %>% mutate(cotizaPension = ifelse(P6920 == 1 | P6920 == 3, 1, 0)) # 1 Si
+ocupados <- ocupados %>% mutate(cotizaPension = ifelse(P6920 == 1, 0, 1)) # 0 Si
 
 if(theYear != 2021){
 ocupados$RAMA2D <- as.numeric(ocupados$RAMA2D)
@@ -96,6 +103,7 @@ ocupadosWrite <- c("DIRECTORIO",
 
 writeOcupados <- ocupados
 writeOcupados <- writeOcupados %>% select(all_of(ocupadosWrite))
+
 write_xlsx(writeOcupados, paste("./output/ocupados",theYear,".xlsx", sep = ""))
 paste("Wrote ",substitute(ocupados)," at ./output/ocupados",theYear,".xslx", sep = "")
 

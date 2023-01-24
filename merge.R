@@ -12,4 +12,7 @@ data2012 <- inner_join(ocupados2012.xlsx, personas2012.xlsx, by = joinCriteria)
 data2012 <- inner_join(data2012, actividades2012.xlsx, by = joinCriteria)
 data2012 <- inner_join(data2012, ingresos2012.xlsx, by = joinCriteria )
 
+write_xlsx(data2012, paste("./2012.xlsx", sep = ""))
+write_xlsx(data2021, paste("./2021.xlsx", sep = ""))
 
+data2012$cotizaPension %>% table()
