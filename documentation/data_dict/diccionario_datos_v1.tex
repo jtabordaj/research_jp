@@ -15,6 +15,7 @@
 \onehalfspacing
 \pagestyle{plain}
 \usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
 \setlength{\parindent}{1em}
 \setlength{\parskip}{1ex}
 \usepackage{geometry}   		 % definition of the page layout
@@ -91,12 +92,12 @@ Las bases de datos se componen de 22 variables:
 			\item \textbf{0} No reporta subempleo por ingresos, es decir, no desea cambiar su empleo para mejorar sus ingresos
 			\item \textbf{1} En otro caso
 		\end{itemize}
-		\item cotizaPension: Variable de seguridad social binaria que toma dos valores:
+		\item \textbf{cotizaPension}: Variable de seguridad social binaria que toma dos valores:
 		\begin{itemize}
 			\item \textbf{0} Se encuentra cotizando en un fondo de pensiones
 			\item \textbf{1} En otro caso
 		\end{itemize}
-		\item posicionOcupacional: Variable categórica que toma distintos valores
+		\item \textbf{posicionOcupacional}: Variable categórica que toma distintos valores
 		\begin{itemize}
 			\item \textbf{1}: Empleado convencional
 			\item \textbf{2}: Obrero o empleado del gobierno
@@ -104,15 +105,48 @@ Las bases de datos se componen de 22 variables:
 			\item \textbf{4}: Patrón o empleador
 			\item \textbf{5}: Otro tipo
 		\end{itemize}
-		\item region: Variable espacial categórica no numérica que toma distintos valores basado en la clasificación DIVIPOLA del DANE
+		\item \textbf{region}: Variable espacial categórica no numérica que toma distintos valores basado en la clasificación DIVIPOLA del DANE
 		\begin{itemize}
 			\item \textbf{Caribe}: Atlántico, Bolívar, Córdoba, Magdalena, César, La Guajira, Sucre
 			\item \textbf{Central}: Antioquia, Boyacá, Caldas, Cundinamarca, Huila, Norte de Santander, Quindío, Risaralda, Santander, Tolima, Bogotá DC.
 			\item \textbf{Pacifica}: Cauca, Chocó, Nariño,	Valle Del Cauca.
 			\item \textbf{Oriental}: Meta, Caquetá
 		\end{itemize}
-		\item 
+		\item \textbf{segmentoEdad}: Variable  categórica que toma distintos valores basado en la edad:
+		\begin{itemize}
+			\item \textbf{1}: Igual o menor a 30 años
+			\item \textbf{2}: Entre 30 y 40 años
+			\item \textbf{3}: Entre 40 y 50 años
+			\item \textbf{4}: Entre 50 y 60 años
+			\item \textbf{5}: Mas de 60 años
+		\end{itemize}
+		\item \textbf{tienePareja}: Variable binaria que toma dos valores:
+		\begin{itemize}
+			\item \textbf{0} No tiene pareja
+			\item \textbf{1} En otro caso
+		\end{itemize}
+		\item \textbf{segmentoEducativo}: Variable  categórica que toma distintos valores basado en el nivel educativo:
+		\begin{itemize}
+			\item \textbf{1}: Básica primaria o ninguna
+			\item \textbf{2}: Secundaria
+			\item \textbf{3}: Educación superior
+		\end{itemize}
+		\item \textbf{afiliadoSalud}: Variable binaria que toma dos valores:
+		\begin{itemize}
+			\item \textbf{0} Esta afiliado en alguna entidad de seguridad social en salud
+			\item \textbf{1} En otro caso
+		\end{itemize}
+		\item \textbf{horasHogar}: Variable numerica continua que indica las horas semanales dedicadas a los oficios del hogar
+		\item \textbf{ingresosTransferencias}: Variable numerica continua que indica el monto mensual recibido por concepto de transferencias monetarias
+		\item \textbf{ingresosOtros}: Variable numerica continua que indica el monto mensual recibido por concepto de otros ingresos. Pueden ser dividendos, intereses, bienes raíces, venta de activos, pensión de vejez o alimenticia, etcetera...
+		\item \textbf{maxTransf} (\textit{OPCIONAL}): Variable que verifica cual es el mayor monto recibido por concepto de transferencias
 \end{enumerate}
 
+Todos los datos provienen de la Gran Encuesta Integrada de Hogares para \textbf{\href{https://microdatos.dane.gov.co/index.php/catalog/77/study-description}{2012}} y  \textbf{\href{https://microdatos.dane.gov.co/index.php/catalog/701/study-description}{2021}}.
+
+\vfill
+
+\noindent Contacto: \href{mailto:jtabordaj@uninorte.edu.co}{jtabordaj@uninorte.edu.co} \\
+Repositorio: \textbf{\href{https://github.com/jtabordaj/research_perilla}{GitHub}}
 
 \end{document}
