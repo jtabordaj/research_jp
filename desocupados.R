@@ -6,7 +6,7 @@ onlyDesocup <- allDataFrames[grep("^desocup", allDataFrames)]
 
 # Data Cleaning
 for(i in onlyDesocup){
-    assign(paste(i, sep=""), simplifierActividades(get(i))); 
+    assign(paste(i, sep=""), simplifierDesocup(get(i))); 
 }
 desocupados <- standardizeTitlesDesocup()
 rownames(desocupados) <- c(1:nrow(desocupados))
@@ -23,7 +23,7 @@ desocupados[desocupados == Inf] <- 0
 desocupadosWrite <- c("DIRECTORIO", 
     "SECUENCIA_P", 
     "ORDEN", 
-    "horasHogar"
+    "dsi", "DSI", "Dsi",
 )
 
 writeDesocupados <- desocupados

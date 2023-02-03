@@ -38,7 +38,7 @@ readFilesCSV <- function(monthStart, monthEnd, survey){
         #assign(paste("actividadesArea.",i, sep=""), read_csv(pathArea)); 
         assign(paste("actividadesCabecera.",i, sep=""), read_csv(pathCabecera), envir=.GlobalEnv);
         assign(paste("actividadesResto.",i, sep=""), read_csv(pathResto), envir=.GlobalEnv)
-        }} else if(survey == "ingresos"){
+    }} else if(survey == "ingresos"){
     for(i in monthStart:monthEnd){
         #pathArea <- paste("./data/",theYear,"/",i,"/area_ingresos.csv", sep = "");
         pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_ingresos.csv", sep = "");
@@ -55,7 +55,7 @@ readFilesCSV <- function(monthStart, monthEnd, survey){
         assign(paste("desocupCabecera.",i, sep=""), read_csv(pathCabecera), envir=.GlobalEnv);
         assign(paste("desocupResto.",i, sep=""), read_csv(pathResto), envir=.GlobalEnv);
     }
-}
+}}
 
 
 readFilesCSV2 <- function(monthStart, monthEnd, survey){
@@ -83,7 +83,7 @@ readFilesCSV2 <- function(monthStart, monthEnd, survey){
         #assign(paste("actividadesArea.",i, sep=""), read_csv2(pathArea)); 
         assign(paste("actividadesCabecera.",i, sep=""), read_csv2(pathCabecera), envir=.GlobalEnv);
         assign(paste("actividadesResto.",i, sep=""), read_csv2(pathResto), envir=.GlobalEnv) 
-        }} else if(survey == "ingresos"){
+    }} else if(survey == "ingresos"){
     for(i in monthStart:monthEnd){
         #pathArea <- paste("./data/",theYear,"/",i,"/area_ingresos.csv", sep = "");
         pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_ingresos.csv", sep = "");
@@ -96,11 +96,11 @@ readFilesCSV2 <- function(monthStart, monthEnd, survey){
         #pathArea <- paste("./data/",theYear,"/",i,"/area_desocupados.csv", sep = "");
         pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_desocupados.csv", sep = "");
         pathResto <- paste("./data/",theYear,"/",i,"/resto_desocupados.csv", sep = "");
-        #assign(paste("desocupArea.",i, sep=""), read_csv(pathArea)); 
-        assign(paste("desocupCabecera.",i, sep=""), read_csv(pathCabecera), envir=.GlobalEnv);
-        assign(paste("desocupResto.",i, sep=""), read_csv(pathResto), envir=.GlobalEnv);
+        #assign(paste("desocupArea.",i, sep=""), read_csv2(pathArea)); 
+        assign(paste("desocupCabecera.",i, sep=""), read_csv2(pathCabecera), envir=.GlobalEnv);
+        assign(paste("desocupResto.",i, sep=""), read_csv2(pathResto), envir=.GlobalEnv);
     }
-}
+}}
 
 readFilesDTA <- function(monthStart, monthEnd, survey){
     if(survey == "ocupados"){
@@ -140,11 +140,11 @@ readFilesDTA <- function(monthStart, monthEnd, survey){
         #pathArea <- paste("./data/",theYear,"/",i,"/area_desocupados.dta", sep = "");
         pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_desocupados.dta", sep = "");
         pathResto <- paste("./data/",theYear,"/",i,"/resto_desocupados.dta", sep = "");
-        #assign(paste("desocupArea.",i, sep=""), read_csv(pathArea)); 
-        assign(paste("desocupCabecera.",i, sep=""), read_csv(pathCabecera), envir=.GlobalEnv);
-        assign(paste("desocupResto.",i, sep=""), read_csv(pathResto), envir=.GlobalEnv);
+        #assign(paste("desocupArea.",i, sep=""), read_dta(pathArea)); 
+        assign(paste("desocupCabecera.",i, sep=""), read_dta(pathCabecera), envir=.GlobalEnv);
+        assign(paste("desocupResto.",i, sep=""), read_dta(pathResto), envir=.GlobalEnv);
     }
-}
+}}
 
 grabData <- function(survey, dataType, monthStart, monthEnd){
     if(dataType == ".csv"){
@@ -293,7 +293,8 @@ standardizeTitlesIng <- function(){
 
 varNamesDesocup <- c("DIRECTORIO", "directorio", "Directorio",
     "SECUENCIA_P", "Secuencia_p", "secuencia_p",
-    "ORDEN", "Orden", "orden"
+    "ORDEN", "Orden", "orden",
+    "DSI", "Dsi", "dsi"
 )
 
 simplifierDesocup <- function(x){
@@ -306,7 +307,7 @@ standardizeTitlesDesocup <- function(){
         dflistDesocup[[df]] <- get(df)
     }
     for (i in 1:length(dflistDesocup)) {
-        colnames(dflistDesocup[[i]]) <- toupper(colnames(ingresosDesocup.9))
+        colnames(dflistDesocup[[i]]) <- toupper(colnames(desocupCabecera.9))
     }
     df_combined <- do.call(rbind, dflistDesocup)
 }
