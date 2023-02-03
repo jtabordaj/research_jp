@@ -4,7 +4,30 @@ grabData("desocupados", ".csv2", 1, 12)
 allDataFrames <- names(which(unlist(eapply(.GlobalEnv,is.data.frame))))
 onlyDesocup <- allDataFrames[grep("^desocup", allDataFrames)]
 
+# Data Cleaning
+for(i in onlyDesocup){
+    assign(paste(i, sep=""), simplifierActividades(get(i))); 
+}
+desocupados <- standardizeTitlesDesocup()
+rownames(desocupados) <- c(1:nrow(desocupados))
 
-# Remember:
-# Revisar si esta/agregar p6050 en caracteristicas generales
+# Validations
+desocupados[is.na(desocupados)] <- 0
+desocupados[desocupados == Inf] <- 0
+
+# Editing Data
+
 # Necesito dsi en modulo desocupados o una variable que de desempleo
+
+# Export
+desocupadosWrite <- c("DIRECTORIO", 
+    "SECUENCIA_P", 
+    "ORDEN", 
+    "horasHogar"
+)
+
+writeDesocupados <- desocupados
+writeDesocupados <- writeDesocupados %>% select(all_of(desocupadosWrite))
+write_xlsx(writeDesocupados, paste("./output/desocupados",theYear,".xlsx", sep = ""))
+paste("Wrote ",substitute(desocupados)," at ./output/desocupados",theYear,".xslx", sep = "")
+

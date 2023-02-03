@@ -213,6 +213,7 @@ varNamesPers <- c("DIRECTORIO", "directorio", "Directorio",
     "ORDEN", "Orden", "orden",
     "P6020", "p6020",
     "P6040", "p6040",
+    "P6050", "p6050",
     "P6070", "p6070",
     "P6090", "p6090",
     "P6210", "p6210",
@@ -288,6 +289,37 @@ standardizeTitlesIng <- function(){
     df_combined <- do.call(rbind, dflistIng)
 }
 
+# Methods desocupados
+
+varNamesDesocup <- c("DIRECTORIO", "directorio", "Directorio",
+    "SECUENCIA_P", "Secuencia_p", "secuencia_p",
+    "ORDEN", "Orden", "orden"
+)
+
+simplifierDesocup <- function(x){
+    x %>% select(any_of(varNamesDesocup))
+}
+
+standardizeTitlesDesocup <- function(){
+    dflistDesocup <- list()
+    for(df in onlyDesocup){
+        dflistDesocup[[df]] <- get(df)
+    }
+    for (i in 1:length(dflistDesocup)) {
+        colnames(dflistDesocup[[i]]) <- toupper(colnames(ingresosDesocup.9))
+    }
+    df_combined <- do.call(rbind, dflistDesocup)
+}
+
+
+# cabecera = cabecera xd
+# resto = rural disperso
+# cabecera + resto = departamento
+# sumatoria(departamentos) = Nacional
+# sumatoria(area) = Nacional 13 Ciudades y AM
+# Si se va a simplificar para hallar cabecera o area hay que agregar la variable AREA
+# en 2007 el fexp viene por aparte
+
 # Methods plot
 
 limitanei <- function(prob){
@@ -300,12 +332,3 @@ densityPlot <- function(data, axis, min, max){
     scale_x_continuous(limits = c(min,max)) +
     theme_bw()
 }
-
-
-# cabecera = cabecera xd
-# resto = rural disperso
-# cabecera + resto = departamento
-# sumatoria(departamentos) = Nacional
-# sumatoria(area) = Nacional 13 Ciudades y AM
-# Si se va a simplificar para hallar cabecera o area hay que agregar la variable AREA
-# en 2007 el fexp viene por aparte
