@@ -46,7 +46,7 @@
 
 Una vivienda puede tener múltiples hogares. Se entiende el hogar como una persona o grupo de personas que ocupan la totalidad o parte de una vivienda y que se han asociado para compartir espacio, comida, descanso, etcétera... Los datos están desagregados al nivel de \textbf{PERSONA}.
 
-Las bases de datos se componen de 22 variables:
+Las bases de datos se componen de 23 variables:
 
 \begin{enumerate}
 	\item \textbf{DIRECTORIO}: Vivienda
@@ -140,6 +140,11 @@ Las bases de datos se componen de 22 variables:
 		\item \textbf{ingresosTransferencias}: Variable numerica continua que indica el monto mensual recibido por concepto de transferencias monetarias
 		\item \textbf{ingresosOtros}: Variable numerica continua que indica el monto mensual recibido por concepto de otros ingresos. Pueden ser dividendos, intereses, bienes raíces, venta de activos, pensión de vejez o alimenticia, etcetera...
 		\item \textbf{maxTransf} (\textit{OPCIONAL}): Variable que verifica cual es el mayor monto recibido por concepto de transferencias
+		\item \textbf{DSI}: Variable binaria recodificada que toma dos valores:
+		\begin{itemize}
+			\item \textbf{1} Si en el hogar (secuencia\_p) de la persona encuestada, que responde positivamente en las preguntas de el modulo ocupados sobre si esta empleado, hay al menos una persona que depende económicamente
+			\item \textbf{0} En otro caso
+		\end{itemize}
 \end{enumerate}
 
 Todos los datos provienen de la Gran Encuesta Integrada de Hogares para \textbf{\href{https://microdatos.dane.gov.co/index.php/catalog/77/study-description}{2012}} y  \textbf{\href{https://microdatos.dane.gov.co/index.php/catalog/701/study-description}{2021}}.
