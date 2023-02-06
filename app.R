@@ -6,6 +6,8 @@ source("./actividades.R")
 rm(list = ls())
 source("./ingresos.R")
 rm(list = ls())
+source("./desocupados.R")
+rm(list = ls())
 
 # Remember to change years
 ######

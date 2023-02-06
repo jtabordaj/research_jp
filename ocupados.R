@@ -1,6 +1,6 @@
 source("./dependencies.R")
 
-grabData("ocupados", ".csv2", 1, 12)
+grabData("ocupados", fileExtension, 1, 12)
 allDataFrames <- names(which(unlist(eapply(.GlobalEnv, is.data.frame))))
 
 # Data cleaning

@@ -1,6 +1,6 @@
 source("./dependencies.R")
 
-grabData("ingresos", ".csv2", 1, 12)
+grabData("ingresos", fileExtension, 1, 12)
 allDataFrames <- names(which(unlist(eapply(.GlobalEnv,is.data.frame))))
 onlyIngresos <- allDataFrames[grep("^ingresos", allDataFrames)]
 

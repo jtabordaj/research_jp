@@ -1,6 +1,6 @@
 source("./dependencies.R")
 
-grabData("personas", ".csv2", 1, 12)
+grabData("personas", fileExtension, 1, 12)
 allDataFrames <- names(which(unlist(eapply(.GlobalEnv,is.data.frame))))
 onlyPersonas <- allDataFrames[grep("^personas", allDataFrames)]
 
@@ -42,7 +42,8 @@ personasWrite <- c("DIRECTORIO",
     "segmentoEdad",
     "tienePareja",
     "segmentoEducativo",
-    "afiliadoSalud"
+    "afiliadoSalud",
+    "esFamiliaHogar"
 )
 
 writePersonas <- personas

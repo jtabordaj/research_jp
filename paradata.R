@@ -1,3 +1,3 @@
-joinCriteria <- c("DIRECTORIO", "SECUENCIA_P", "ORDEN")
+joinCriteria <- c("DIRECTORIO", "SECUENCIA_P")
 
-paradata <- inner_join(desocupados, personas, by = joinCriteria)
+paradata2012 <- inner_join(data2012, desocupados2012.xlsx, by = joinCriteria)

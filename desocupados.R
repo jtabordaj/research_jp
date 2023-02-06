@@ -1,6 +1,6 @@
 source("./dependencies.R")
 
-grabData("desocupados", ".csv2", 1, 12)
+grabData("desocupados", fileExtension, 1, 12)
 allDataFrames <- names(which(unlist(eapply(.GlobalEnv,is.data.frame))))
 onlyDesocup <- allDataFrames[grep("^desocup", allDataFrames)]
 
@@ -22,12 +22,11 @@ desocupados[desocupados == Inf] <- 0
 # Export
 desocupadosWrite <- c("DIRECTORIO", 
     "SECUENCIA_P", 
-    "ORDEN", 
-    "dsi", "DSI", "Dsi",
+    "dsi", "DSI", "Dsi"
 )
 
 writeDesocupados <- desocupados
-writeDesocupados <- writeDesocupados %>% select(all_of(desocupadosWrite))
+writeDesocupados <- writeDesocupados %>% select(any_of(desocupadosWrite))
 write_xlsx(writeDesocupados, paste("./output/desocupados",theYear,".xlsx", sep = ""))
 paste("Wrote ",substitute(desocupados)," at ./output/desocupados",theYear,".xslx", sep = "")
 

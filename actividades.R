@@ -1,6 +1,6 @@
 source("./dependencies.R")
 
-grabData("actividades", ".csv2", 1, 12)
+grabData("actividades", fileExtension, 1, 12)
 allDataFrames <- names(which(unlist(eapply(.GlobalEnv,is.data.frame))))
 onlyActividades <- allDataFrames[grep("^actividades", allDataFrames)]
 
