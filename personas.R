@@ -26,6 +26,7 @@ personas <- personas %>% mutate(segmentoEdad = ifelse(P6040 <= 30, 1,
 )
 personas <- personas %>% mutate(tienePareja = ifelse(P6070 == 1 | P6070 == 2 | P6070 == 3, 1, 0)) # 1 Si
 # personas <- personas %>% mutate(esFamiliaHogar = ifelse(P6050 <= 5, 1, 0)) # 1 Tiene vinculo familiar con el jefe del hogar 
+personas <- personas %>% mutate(genero = ifelse(P6020 == 2, 1, 0)) # 1 es Mujer
 personas <- personas %>% mutate(segmentoEducativo = ifelse(P6210 == 0 | 
     P6210 == 1 | 
     P6210 == 2 |
@@ -40,6 +41,7 @@ personasWrite <- c("DIRECTORIO",
     "SECUENCIA_P", 
     "ORDEN", 
     "segmentoEdad",
+    "genero",
     "tienePareja",
     "segmentoEducativo",
     "afiliadoSalud"
