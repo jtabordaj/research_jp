@@ -1,0 +1,162 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath}				% For use of  a large range of formulas, commands, and symbols
+\usepackage[utf8]{inputenc}			% Specifies the encoding. (Zeichenkodierung, bindet Sonderzeichen mit ein)
+\usepackage[T1]{fontenc}			% Include the accented characters as individual glyphs(ö is one single glyph, not an o with an added accent)
+\usepackage[spanish]{babel}			% Specifies the language of doucment (translates "Table of Contents"...)
+\usepackage{graphicx}				% For including graphics
+\graphicspath{{images}}
+\usepackage{subfigure}				% For including "sub"figures
+\usepackage{lscape}					% Rotates text within environment by 90 degrees.
+\usepackage{pst-plot, pstricks}		% plot­ting of data (typ­i­cally from ex­ter­nal files), plotting lines, rectangles...
+\usepackage{fancybox,amssymb,color}	% fancybox: frames, rotations - amssymb: extension for amsmath - color: set the font color, text background, or page
+\usepackage{setspace}				% allows to specifiy the space between lines
+\usepackage{booktabs} 				% For prettier tables
+\onehalfspacing
+\pagestyle{plain}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{1em}
+\setlength{\parskip}{1ex}
+\usepackage{geometry}   		 % definition of the page layout
+\geometry{
+	a4paper,					 % format
+	left=30mm,					 % left margin
+	right=30mm,					 % right margin
+	top=25mm,					 % distance upwards
+	bottom=25mm,				 % distance downwards
+	includehead,				 % distance from upwards till the page header
+}
+
+
+\begin{document}
+
+\begin{center}
+	\textbf{Diccionario de Datos} \\
+	Ultima vez editado: \today
+\end{center}
+\vspace{10mm}
+
+\textbf{Nivel de desagregación de los datos}
+\begin{enumerate}
+	\item A nivel vivienda: DIRECTORIO
+	\item A nivel hogar: DIRECTORIO + SECUENCIA\_P
+	\item A nivel persona: DIRECTORIO + SECUENCIA\_P + ORDEN
+\end{enumerate}
+
+Una vivienda puede tener múltiples hogares. Se entiende el hogar como una persona o grupo de personas que ocupan la totalidad o parte de una vivienda y que se han asociado para compartir espacio, comida, descanso, etcétera... Los datos están desagregados al nivel de \textbf{PERSONA}.
+
+Las bases de datos se componen de 23 variables:
+
+\begin{enumerate}
+	\item \textbf{DIRECTORIO}: Vivienda
+	\item \textbf{SECUENCIA\_P}: Hogar 
+	\item \textbf{ORDEN}: Persona en el hogar
+	\item \textbf{conformeContrato}: Variable de satisfacción laboral binaria que toma dos valores:
+	\begin{itemize}
+		\item \textbf{0} Si esta conforme con el contrato que tiene
+		\item \textbf{1} En otro caso
+	\end{itemize}
+	\item \textbf{quiereCambiar}: Variable de satisfacción laboral binaria que toma dos valores:
+	\begin{itemize}
+		\item \textbf{0} Si desea cambiar el trabajo que tiene actualmente
+		\item \textbf{1} En otro caso
+	\end{itemize}
+	\item \textbf{conformeTrabajo}: Variable de satisfacción laboral binaria que toma dos valores:
+	\begin{itemize}
+		\item \textbf{0} Si no esta satisfecho con su trabajo actual
+		\item \textbf{1} En otro caso
+	\end{itemize}
+	\item \textbf{ingresosTrabajo}: Variable continua que indica los ingresos mensuales del encuestado por concepto de actividades laborales
+	\item \textbf{actividadEconomica}: Variable categórica basada en la clasificación del \textit{Código Industrial Internacional Uniforme rev. 3} de dos dígitos. Toma los siguientes valores:
+	\begin{itemize}
+		\item \textbf{AtB}: Agricultura, cacería, silvicultura y pesca
+		\item \textbf{C}: Minería y extracción
+		\item \textbf{D}: Manufacturas
+		\item \textbf{E}: Electricidad, Gas y Agua
+		\item \textbf{F}: Construcción
+		\item \textbf{GtH}: Comercio, hoteles y restaurantes
+		\item \textbf{I}: Transporte, almacenamiento y comunicaciones
+		\item \textbf{JtK}: Finanzas, seguros, bienes raíces, y servicios de negocio
+		\item \textbf{LtQ}: Comunidad social y servicios personales
+		\item \textbf{Otro}: Otra actividad o actividades no clasificadas
+	\end{itemize}
+		\item \textbf{horasTrabajo}: Variable continua que indica las horas semanales dedicadas por el encuestado al trabajo normalmente
+		\item \textbf{subempleadoHoras}: Variable de subempleo binaria que toma dos valores:
+		\begin{itemize}
+			\item \textbf{0} No reporta subempleo por horas, es decir, no desea trabajar mas horas
+			\item \textbf{1} En otro caso
+		\end{itemize}
+		\item \textbf{subempleadoIngresos}: Variable de subempleo binaria que toma dos valores:
+		\begin{itemize}
+			\item \textbf{0} No reporta subempleo por ingresos, es decir, no desea cambiar su empleo para mejorar sus ingresos
+			\item \textbf{1} En otro caso
+		\end{itemize}
+		\item \textbf{cotizaPension}: Variable de seguridad social binaria que toma dos valores:
+		\begin{itemize}
+			\item \textbf{0} Se encuentra cotizando en un fondo de pensiones
+			\item \textbf{1} En otro caso
+		\end{itemize}
+		\item \textbf{posicionOcupacional}: Variable categórica que toma distintos valores
+		\begin{itemize}
+			\item \textbf{1}: Empleado convencional
+			\item \textbf{2}: Obrero o empleado del gobierno
+			\item \textbf{3}: Trabajador por cuenta propia
+			\item \textbf{4}: Patrón o empleador
+			\item \textbf{5}: Otro tipo
+		\end{itemize}
+		\item \textbf{region}: Variable espacial categórica no numérica que toma distintos valores basado en la clasificación DIVIPOLA del DANE
+		\begin{itemize}
+			\item \textbf{Caribe}: Atlántico, Bolívar, Córdoba, Magdalena, César, La Guajira, Sucre
+			\item \textbf{Central}: Antioquia, Boyacá, Caldas, Cundinamarca, Huila, Norte de Santander, Quindío, Risaralda, Santander, Tolima, Bogotá DC.
+			\item \textbf{Pacifica}: Cauca, Chocó, Nariño,	Valle Del Cauca.
+			\item \textbf{Oriental}: Meta, Caquetá
+		\end{itemize}
+		\item \textbf{segmentoEdad}: Variable  categórica que toma distintos valores basado en la edad:
+		\begin{itemize}
+			\item \textbf{1}: Igual o menor a 30 años
+			\item \textbf{2}: Entre 30 y 40 años
+			\item \textbf{3}: Entre 40 y 50 años
+			\item \textbf{4}: Entre 50 y 60 años
+			\item \textbf{5}: Mas de 60 años
+		\end{itemize}
+		\item \textbf{genero}: Variable binaria que toma dos valores:
+		\begin{itemize}
+			\item \textbf{1} Es mujer
+			\item \textbf{0} En otro caso
+		\end{itemize}
+		\item \textbf{tienePareja}: Variable binaria que toma dos valores:
+		\begin{itemize}
+			\item \textbf{0} No tiene pareja
+			\item \textbf{1} En otro caso
+		\end{itemize}
+		\item \textbf{segmentoEducativo}: Variable  categórica que toma distintos valores basado en el nivel educativo:
+		\begin{itemize}
+			\item \textbf{1}: Básica primaria o ninguna
+			\item \textbf{2}: Secundaria
+			\item \textbf{3}: Educación superior
+		\end{itemize}
+		\item \textbf{afiliadoSalud}: Variable binaria que toma dos valores:
+		\begin{itemize}
+			\item \textbf{0} Esta afiliado en alguna entidad de seguridad social en salud
+			\item \textbf{1} En otro caso
+		\end{itemize}
+		\item \textbf{horasHogar}: Variable numerica continua que indica las horas semanales dedicadas a los oficios del hogar
+		\item \textbf{ingresosTransferencias}: Variable numerica continua que indica el monto mensual recibido por concepto de transferencias monetarias
+		\item \textbf{ingresosOtros}: Variable numerica continua que indica el monto mensual recibido por concepto de otros ingresos. Pueden ser dividendos, intereses, bienes raíces, venta de activos, pensión de vejez o alimenticia, etcetera...
+		\item \textbf{maxTransf} (\textit{OPCIONAL}): Variable que verifica cual es el mayor monto recibido por concepto de transferencias
+		\item \textbf{DSI}: Variable binaria recodificada que toma dos valores:
+		\begin{itemize}
+			\item \textbf{1} Si en el hogar (secuencia\_p) de la persona encuestada, que responde positivamente en las preguntas de el modulo ocupados sobre si esta empleado, hay al menos una persona que depende económicamente
+			\item \textbf{0} En otro caso
+		\end{itemize}
+\end{enumerate}
+
+Todos los datos provienen de la Gran Encuesta Integrada de Hogares para \textbf{\href{https://microdatos.dane.gov.co/index.php/catalog/77/study-description}{2012}} y  \textbf{\href{https://microdatos.dane.gov.co/index.php/catalog/701/study-description}{2021}}.
+
+\vfill
+
+\noindent Contacto: \href{mailto:jtabordaj@uninorte.edu.co}{jtabordaj@uninorte.edu.co} \\
+Repositorio: \textbf{\href{https://github.com/jtabordaj/research_perilla}{GitHub}}
+
+\end{document}
