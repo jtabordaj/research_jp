@@ -1,19 +1,19 @@
-source("./ocupados.R")
+source("./geih/ocupados.R")
 rm(list = ls())
-source("./personas.R")
+source("./geih/personas.R")
 rm(list = ls())
-source("./actividades.R")
+source("./geih/actividades.R")
 rm(list = ls())
-source("./ingresos.R")
+source("./geih/ingresos.R")
 rm(list = ls())
-source("./desocupados.R")
+source("./geih/desocupados.R")
 rm(list = ls())
 
 # Remember to change years
 
 ######
 
-source("./dependencies.R")
+source("./geih/dependencies.R")
 
 grabOutputs()
 
@@ -47,5 +47,5 @@ paradata2021[paradata2021 == Inf] <- 0
 
 ## Export
 
-write_xlsx(paradata2012, paste("./2012.xlsx", sep = ""))
-write_xlsx(paradata2021, paste("./2021.xlsx", sep = ""))
+write_xlsx(paradata2012, paste("./geih/2012.xlsx", sep = ""))
+write_xlsx(paradata2021, paste("./geih/2021.xlsx", sep = ""))

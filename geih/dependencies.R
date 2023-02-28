@@ -17,41 +17,41 @@ fileExtension <- ".csv2"
 readFilesCSV <- function(monthStart, monthEnd, survey){
     if(survey == "ocupados"){
     for(i in monthStart:monthEnd){
-        #pathArea <- paste("./data/",theYear,"/",i,"/area_ocupados.csv", sep = "");
-        pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_ocupados.csv", sep = "");
-        pathResto <- paste("./data/",theYear,"/",i,"/resto_ocupados.csv", sep = "");
+        #pathArea <- paste("./geih/data/",theYear,"/",i,"/area_ocupados.csv", sep = "");
+        pathCabecera <- paste("./geih/data/",theYear,"/",i,"/cabecera_ocupados.csv", sep = "");
+        pathResto <- paste("./geih/data/",theYear,"/",i,"/resto_ocupados.csv", sep = "");
         #assign(paste("ocupArea.",i, sep=""), read_csv(pathArea)); 
         assign(paste("ocupCabecera.",i, sep=""), read_csv(pathCabecera), envir=.GlobalEnv);
         assign(paste("ocupResto.",i, sep=""), read_csv(pathResto), envir=.GlobalEnv);
     }} else if(survey == "personas"){
     for(i in monthStart:monthEnd){
-        #pathArea <- paste("./data/",theYear,"/",i,"/area_personas.csv", sep = "");
-        pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_personas.csv", sep = "");
-        pathResto <- paste("./data/",theYear,"/",i,"/resto_personas.csv", sep = "");
+        #pathArea <- paste("./geih/data/",theYear,"/",i,"/area_personas.csv", sep = "");
+        pathCabecera <- paste("./geih/data/",theYear,"/",i,"/cabecera_personas.csv", sep = "");
+        pathResto <- paste("./geih/data/",theYear,"/",i,"/resto_personas.csv", sep = "");
         #assign(paste("personasArea.",i, sep=""), read_csv(pathArea)); 
         assign(paste("personasCabecera.",i, sep=""), read_csv(pathCabecera), envir=.GlobalEnv);
         assign(paste("personasResto.",i, sep=""), read_csv(pathResto), envir=.GlobalEnv)
     }} else if(survey == "actividades"){
     for(i in monthStart:monthEnd){
-        #pathArea <- paste("./data/",theYear,"/",i,"/area_actividades.csv", sep = "");
-        pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_actividades.csv", sep = "");
-        pathResto <- paste("./data/",theYear,"/",i,"/resto_actividades.csv", sep = "");
+        #pathArea <- paste("./geih/data/",theYear,"/",i,"/area_actividades.csv", sep = "");
+        pathCabecera <- paste("./geih/data/",theYear,"/",i,"/cabecera_actividades.csv", sep = "");
+        pathResto <- paste("./geih/data/",theYear,"/",i,"/resto_actividades.csv", sep = "");
         #assign(paste("actividadesArea.",i, sep=""), read_csv(pathArea)); 
         assign(paste("actividadesCabecera.",i, sep=""), read_csv(pathCabecera), envir=.GlobalEnv);
         assign(paste("actividadesResto.",i, sep=""), read_csv(pathResto), envir=.GlobalEnv)
     }} else if(survey == "ingresos"){
     for(i in monthStart:monthEnd){
-        #pathArea <- paste("./data/",theYear,"/",i,"/area_ingresos.csv", sep = "");
-        pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_ingresos.csv", sep = "");
-        pathResto <- paste("./data/",theYear,"/",i,"/resto_ingresos.csv", sep = "");
+        #pathArea <- paste("./geih/data/",theYear,"/",i,"/area_ingresos.csv", sep = "");
+        pathCabecera <- paste("./geih/data/",theYear,"/",i,"/cabecera_ingresos.csv", sep = "");
+        pathResto <- paste("./geih/data/",theYear,"/",i,"/resto_ingresos.csv", sep = "");
         #assign(paste("ingresosArea.",i, sep=""), read_csv(pathArea)); 
         assign(paste("ingresosCabecera.",i, sep=""), read_csv(pathCabecera), envir=.GlobalEnv);
         assign(paste("ingresosResto.",i, sep=""), read_csv(pathResto), envir=.GlobalEnv)
     }} else if(survey == "desocupados"){
     for(i in monthStart:monthEnd){
-        #pathArea <- paste("./data/",theYear,"/",i,"/area_desocupados.csv", sep = "");
-        pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_desocupados.csv", sep = "");
-        pathResto <- paste("./data/",theYear,"/",i,"/resto_desocupados.csv", sep = "");
+        #pathArea <- paste("./geih/data/",theYear,"/",i,"/area_desocupados.csv", sep = "");
+        pathCabecera <- paste("./geih/data/",theYear,"/",i,"/cabecera_desocupados.csv", sep = "");
+        pathResto <- paste("./geih/data/",theYear,"/",i,"/resto_desocupados.csv", sep = "");
         #assign(paste("desocupArea.",i, sep=""), read_csv(pathArea)); 
         assign(paste("desocupCabecera.",i, sep=""), read_csv(pathCabecera), envir=.GlobalEnv);
         assign(paste("desocupResto.",i, sep=""), read_csv(pathResto), envir=.GlobalEnv);
@@ -62,41 +62,41 @@ readFilesCSV <- function(monthStart, monthEnd, survey){
 readFilesCSV2 <- function(monthStart, monthEnd, survey){
     if(survey == "ocupados"){
     for(i in monthStart:monthEnd){
-        #pathArea <- paste("./data/",theYear,"/",i,"/area_ocupados.csv", sep = "");
-        pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_ocupados.csv", sep = "");
-        pathResto <- paste("./data/",theYear,"/",i,"/resto_ocupados.csv", sep = "");
+        #pathArea <- paste("./geih/data/",theYear,"/",i,"/area_ocupados.csv", sep = "");
+        pathCabecera <- paste("./geih/data/",theYear,"/",i,"/cabecera_ocupados.csv", sep = "");
+        pathResto <- paste("./geih/data/",theYear,"/",i,"/resto_ocupados.csv", sep = "");
         #assign(paste("ocupArea.",i, sep=""), read_csv2(pathArea)); 
         assign(paste("ocupCabecera.",i, sep=""), read_csv2(pathCabecera), envir=.GlobalEnv);
         assign(paste("ocupResto.",i, sep=""), read_csv2(pathResto), envir=.GlobalEnv);
     }} else if(survey == "personas"){
     for(i in monthStart:monthEnd){
-        #pathArea <- paste("./data/",theYear,"/",i,"/area_personas.csv", sep = "");
-        pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_personas.csv", sep = "");
-        pathResto <- paste("./data/",theYear,"/",i,"/resto_personas.csv", sep = "");
+        #pathArea <- paste("./geih/data/",theYear,"/",i,"/area_personas.csv", sep = "");
+        pathCabecera <- paste("./geih/data/",theYear,"/",i,"/cabecera_personas.csv", sep = "");
+        pathResto <- paste("./geih/data/",theYear,"/",i,"/resto_personas.csv", sep = "");
         #assign(paste("personasArea.",i, sep=""), read_csv2(pathArea)); 
         assign(paste("personasCabecera.",i, sep=""), read_csv2(pathCabecera), envir=.GlobalEnv);
         assign(paste("personasResto.",i, sep=""), read_csv2(pathResto), envir=.GlobalEnv)
     }} else if(survey == "actividades"){
     for(i in monthStart:monthEnd){
-        #pathArea <- paste("./data/",theYear,"/",i,"/area_actividades.csv", sep = "");
-        pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_actividades.csv", sep = "");
-        pathResto <- paste("./data/",theYear,"/",i,"/resto_actividades.csv", sep = "");
+        #pathArea <- paste("./geih/data/",theYear,"/",i,"/area_actividades.csv", sep = "");
+        pathCabecera <- paste("./geih/data/",theYear,"/",i,"/cabecera_actividades.csv", sep = "");
+        pathResto <- paste("./geih/data/",theYear,"/",i,"/resto_actividades.csv", sep = "");
         #assign(paste("actividadesArea.",i, sep=""), read_csv2(pathArea)); 
         assign(paste("actividadesCabecera.",i, sep=""), read_csv2(pathCabecera), envir=.GlobalEnv);
         assign(paste("actividadesResto.",i, sep=""), read_csv2(pathResto), envir=.GlobalEnv) 
     }} else if(survey == "ingresos"){
     for(i in monthStart:monthEnd){
-        #pathArea <- paste("./data/",theYear,"/",i,"/area_ingresos.csv", sep = "");
-        pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_ingresos.csv", sep = "");
-        pathResto <- paste("./data/",theYear,"/",i,"/resto_ingresos.csv", sep = "");
+        #pathArea <- paste("./geih/data/",theYear,"/",i,"/area_ingresos.csv", sep = "");
+        pathCabecera <- paste("./geih/data/",theYear,"/",i,"/cabecera_ingresos.csv", sep = "");
+        pathResto <- paste("./geih/data/",theYear,"/",i,"/resto_ingresos.csv", sep = "");
         #assign(paste("ingresosArea.",i, sep=""), read_csv2(pathArea)); 
         assign(paste("ingresosCabecera.",i, sep=""), read_csv2(pathCabecera), envir=.GlobalEnv);
         assign(paste("ingresosResto.",i, sep=""), read_csv2(pathResto), envir=.GlobalEnv)
     }} else if(survey == "desocupados"){
     for(i in monthStart:monthEnd){
-        #pathArea <- paste("./data/",theYear,"/",i,"/area_desocupados.csv", sep = "");
-        pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_desocupados.csv", sep = "");
-        pathResto <- paste("./data/",theYear,"/",i,"/resto_desocupados.csv", sep = "");
+        #pathArea <- paste("./geih/data/",theYear,"/",i,"/area_desocupados.csv", sep = "");
+        pathCabecera <- paste("./geih/data/",theYear,"/",i,"/cabecera_desocupados.csv", sep = "");
+        pathResto <- paste("./geih/data/",theYear,"/",i,"/resto_desocupados.csv", sep = "");
         #assign(paste("desocupArea.",i, sep=""), read_csv2(pathArea)); 
         assign(paste("desocupCabecera.",i, sep=""), read_csv2(pathCabecera), envir=.GlobalEnv);
         assign(paste("desocupResto.",i, sep=""), read_csv2(pathResto), envir=.GlobalEnv);
@@ -106,41 +106,41 @@ readFilesCSV2 <- function(monthStart, monthEnd, survey){
 readFilesDTA <- function(monthStart, monthEnd, survey){
     if(survey == "ocupados"){
     for(i in monthStart:monthEnd){
-        #pathArea <- paste("./data/",theYear,"/",i,"/area_ocupados.dta", sep = "");
-        pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_ocupados.dta", sep = "");
-        pathResto <- paste("./data/",theYear,"/",i,"/resto_ocupados.dta", sep = "");
+        #pathArea <- paste("./geih/data/",theYear,"/",i,"/area_ocupados.dta", sep = "");
+        pathCabecera <- paste("./geih/data/",theYear,"/",i,"/cabecera_ocupados.dta", sep = "");
+        pathResto <- paste("./geih/data/",theYear,"/",i,"/resto_ocupados.dta", sep = "");
         #assign(paste("ocupArea.",i, sep=""), read_dta(pathArea)); 
         assign(paste("ocupCabecera.",i, sep=""), read_dta(pathCabecera), envir=.GlobalEnv);
         assign(paste("ocupResto.",i, sep=""), read_dta(pathResto), envir=.GlobalEnv);
     }} else if(survey == "personas"){
     for(i in monthStart:monthEnd){
-        pathArea <- paste("./data/",theYear,"/",i,"/area_personas.dta", sep = "");
-        pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_personas.dta", sep = "");
-        pathResto <- paste("./data/",theYear,"/",i,"/resto_personas.dta", sep = "");
+        pathArea <- paste("./geih/data/",theYear,"/",i,"/area_personas.dta", sep = "");
+        pathCabecera <- paste("./geih/data/",theYear,"/",i,"/cabecera_personas.dta", sep = "");
+        pathResto <- paste("./geih/data/",theYear,"/",i,"/resto_personas.dta", sep = "");
         #assign(paste("personasArea.",i, sep=""), read_csv2(pathArea)); 
         assign(paste("personasCabecera.",i, sep=""), read_dta(pathCabecera), envir=.GlobalEnv);
         assign(paste("personasResto.",i, sep=""), read_dta(pathResto), envir=.GlobalEnv);
     }} else if(survey == "actividades"){
     for(i in monthStart:monthEnd){
-        #pathArea <- paste("./data/",theYear,"/",i,"/area_actividades.dta", sep = "");
-        pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_actividades.dta", sep = "");
-        pathResto <- paste("./data/",theYear,"/",i,"/resto_actividades.dta", sep = "");
+        #pathArea <- paste("./geih/data/",theYear,"/",i,"/area_actividades.dta", sep = "");
+        pathCabecera <- paste("./geih/data/",theYear,"/",i,"/cabecera_actividades.dta", sep = "");
+        pathResto <- paste("./geih/data/",theYear,"/",i,"/resto_actividades.dta", sep = "");
         #assign(paste("actividadesArea.",i, sep=""), read_dta(pathArea)); 
         assign(paste("actividadesCabecera.",i, sep=""), read_dta(pathCabecera), envir=.GlobalEnv);
         assign(paste("actividadesResto.",i, sep=""), read_dta(pathResto), envir=.GlobalEnv)
     }} else if(survey == "ingresos"){
     for(i in monthStart:monthEnd){
-        pathArea <- paste("./data/",theYear,"/",i,"/area_ingresos.dta", sep = "");
-        pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_ingresos.dta", sep = "");
-        pathResto <- paste("./data/",theYear,"/",i,"/resto_ingresos.dta", sep = "");
+        pathArea <- paste("./geih/data/",theYear,"/",i,"/area_ingresos.dta", sep = "");
+        pathCabecera <- paste("./geih/data/",theYear,"/",i,"/cabecera_ingresos.dta", sep = "");
+        pathResto <- paste("./geih/data/",theYear,"/",i,"/resto_ingresos.dta", sep = "");
         #assign(paste("ingresosArea.",i, sep=""), read_dta(pathArea)); 
         assign(paste("ingresosCabecera.",i, sep=""), read_dta(pathCabecera), envir=.GlobalEnv);
         assign(paste("ingresosResto.",i, sep=""), read_dta(pathResto), envir=.GlobalEnv)
     }} else if(survey == "desocupados"){
     for(i in monthStart:monthEnd){
-        #pathArea <- paste("./data/",theYear,"/",i,"/area_desocupados.dta", sep = "");
-        pathCabecera <- paste("./data/",theYear,"/",i,"/cabecera_desocupados.dta", sep = "");
-        pathResto <- paste("./data/",theYear,"/",i,"/resto_desocupados.dta", sep = "");
+        #pathArea <- paste("./geih/data/",theYear,"/",i,"/area_desocupados.dta", sep = "");
+        pathCabecera <- paste("./geih/data/",theYear,"/",i,"/cabecera_desocupados.dta", sep = "");
+        pathResto <- paste("./geih/data/",theYear,"/",i,"/resto_desocupados.dta", sep = "");
         #assign(paste("desocupArea.",i, sep=""), read_dta(pathArea)); 
         assign(paste("desocupCabecera.",i, sep=""), read_dta(pathCabecera), envir=.GlobalEnv);
         assign(paste("desocupResto.",i, sep=""), read_dta(pathResto), envir=.GlobalEnv);
@@ -158,9 +158,9 @@ grabData <- function(survey, dataType, monthStart, monthEnd){
 }
 
 grabOutputs <- function(){
-   outputFiles <- list.files("./output") 
+   outputFiles <- list.files("./geih/output") 
    for(i in outputFiles){
-    path <- paste("./output/",i, sep = "")
+    path <- paste("./geih/output/",i, sep = "")
     assign(paste(i, sep = ""), read_xlsx(path), envir = .GlobalEnv)
    }
 }
@@ -321,16 +321,3 @@ standardizeTitlesDesocup <- function(){
 # sumatoria(area) = Nacional 13 Ciudades y AM
 # Si se va a simplificar para hallar cabecera o area hay que agregar la variable AREA
 # en 2007 el fexp viene por aparte
-
-# Methods plot
-
-limitanei <- function(prob){
-    data.frame(quantile(wages$maxWage, probs = prob))[1,1];
-}
-
-densityPlot <- function(data, axis, min, max){
-    ggplot(data, aes(x=axis)) + 
-    geom_density() +
-    scale_x_continuous(limits = c(min,max)) +
-    theme_bw()
-}
