@@ -156,7 +156,7 @@ edit$IV1R7C2[is.na(edit$IV1R7C2)] <- 0
 edit$IV1R8C2[is.na(edit$IV1R8C2)] <- 0
 
 edit <- edit %>% mutate(educadosColegio2017 = IV1R7C1 + IV1R8C1)
-edit <- edit %>% mutate(educadosColegio2017 = IV1R7C2 + IV1R8C2)
+edit <- edit %>% mutate(educadosColegio2018 = IV1R7C2 + IV1R8C2)
 
 edit$IV1R4C1[is.na(edit$IV1R4C1)] <- 0
 edit$IV1R5C1[is.na(edit$IV1R5C1)] <- 0
@@ -214,3 +214,112 @@ edit <- edit %>% mutate(ocupadosMarketing = IV4R3C3)
 edit <- edit %>% mutate(ratioMarketing = ocupadosMarketing/totOcupados2018)
 
 edit[isNaN(edit)] <- 0
+
+## Fuentes de financiamiento
+# Numeric, miles de pesos
+
+edit$III1R1C1[is.na(edit$III1R1C1)] <- 0
+edit$III1R1C2[is.na(edit$III1R1C2)] <- 0
+
+edit <- edit %>% mutate(recursosPropio2017 = III1R1C1)
+edit <- edit %>% mutate(recursosPropio2018 = III1R1C2)
+
+edit$III1R4C1[is.na(edit$III1R4C1)] <- 0
+edit$III1R4C2[is.na(edit$III1R4C2)] <- 0
+edit$III1R4C3[is.na(edit$III1R4C3)] <- 0
+edit$III1R4C4[is.na(edit$III1R4C4)] <- 0
+
+edit <- edit %>% mutate(recursosBanca2017 = III1R4C1 + III1R4C2)
+edit <- edit %>% mutate(recursosBanca2018 = III1R4C3 + III1R4C4)
+
+edit$III1R2C1[is.na(edit$III1R2C1)] <- 0
+edit$III1R2C2[is.na(edit$III1R2C2)] <- 0
+
+edit <- edit %>% mutate(recursosConglomerado2017 = III1R2C1)
+edit <- edit %>% mutate(recursosConglomerado2018 = III1R2C2)
+
+edit$III1R3C1[is.na(edit$III1R3C1)] <- 0
+edit$III1R3C2[is.na(edit$III1R3C2)] <- 0
+
+edit <- edit %>% mutate(recursosPublicos2017 = III1R3C1)
+edit <- edit %>% mutate(recursosPublicos2018 = III1R3C2)
+
+edit$III1R5C1[is.na(edit$III1R5C1)] <- 0
+edit$III1R5C2[is.na(edit$III1R5C2)] <- 0
+edit$III1R5C3[is.na(edit$III1R5C3)] <- 0
+edit$III1R5C4[is.na(edit$III1R5C4)] <- 0
+
+edit <- edit %>% mutate(recursosEmpresas2017 = III1R5C1 + III1R5C2)
+edit <- edit %>% mutate(recursosEmpresas2018 = III1R5C3 + III1R5C4)
+
+edit$III1R6C1[is.na(edit$III1R6C1)] <- 0
+edit$III1R6C2[is.na(edit$III1R6C2)] <- 0
+edit$III1R6C3[is.na(edit$III1R6C3)] <- 0
+edit$III1R6C4[is.na(edit$III1R6C4)] <- 0
+
+edit$III1R7C1[is.na(edit$III1R7C1)] <- 0
+edit$III1R7C2[is.na(edit$III1R7C2)] <- 0
+edit$III1R7C3[is.na(edit$III1R7C3)] <- 0
+edit$III1R7C4[is.na(edit$III1R7C4)] <- 0
+
+edit <- edit %>% mutate(recursosOtros2017 = III1R6C1 + III1R6C2  + III1R7C1 + III1R7C2)
+edit <- edit %>% mutate(recursosOtros2018 = III1R6C3 + III1R6C4  + III1R7C3 + III1R7C4)
+
+## Contrato con el estado
+# Dummy
+
+edit$I8R1C1[is.na(edit$I8R1C1)] <- 2
+edit <- edit %>% mutate(contratoEstado = ifelse(I8R1C1 == 1, 1, 0)) #1= Si contrato con el estado
+
+## Sistemas nacionales de innovacion
+# Dummys
+
+edit$V2R2C1[is.na(edit$V2R2C1)] <- 2
+edit <- edit %>% mutate(sniSENA = ifelse(V2R2C1 == 1, 1,0)) #1 = Coopero con SENA
+
+edit$V2R15C1[is.na(edit$V2R15C1 == 1)] <- 2
+edit <- edit %>% mutate(sniCamaraComercio = ifelse(V2R15C1 == 1, 1,0)) #1 = Coopero con Camara de Comercio
+
+edit$V2R3C1[is.na(edit$V2R3C1)] <- 2
+edit <- edit %>% mutate(sniICONTEC = ifelse(V2R3C1 == 1, 1,0)) #1 = Coopero con ICONTEC
+
+edit$V2R7C1[is.na(edit$V2R7C1)] <- 2
+edit <- edit %>% mutate(sniUnivSNCTI = ifelse(V2R7C1 == 1, 1,0)) #1 = Coopero con Universidad del SNCTI
+
+edit$V2R4C1[is.na(edit$V2R4C1)] <- 2
+edit <- edit %>% mutate(sniSIC = ifelse(V2R4C1 == 1, 1,0)) #1 = Coopero con SicSuper
+
+edit$V2R1C1[is.na(edit$V2R1C1)] <- 2
+edit <- edit %>% mutate(sniMinciencias = ifelse(V2R1C1 == 1, 1,0)) #1 = Coopero con Minciencias
+
+edit$V3R5C1[is.na(edit$V3R5C1)] <- 2
+edit <- edit %>% mutate(sniConsultores = ifelse(V3R5C1 == 1, 1,0)) #1 = Coopero con consultores
+
+edit$V2R17C1[is.na(edit$V2R17C1)] <- 2
+edit <- edit %>% mutate(sniProcolombia = ifelse(V2R17C1 == 1, 1,0)) #1 = Coopero con procolombia
+
+edit$III2R1C1[is.na(edit$III2R1C1)] <- 0
+edit$III2R1C2[is.na(edit$III2R1C2)] <- 0
+edit <- edit %>% mutate(sniINNPulsa = ifelse(III2R1C1 > 0 | III2R1C2 > 0, 1,0)) #1 = Coopero con INNpulsa
+
+## Incentivos a la productividad
+## Dummys
+# Solo hay 2018
+
+edit$VIII14R5C1[is.na(edit$VIII14R5C1)] <- 2
+edit <- edit %>% mutate(bonosGerenciales = ifelse(VIII14R5C1 == 1, 0, 1)) #1 = Usa Bonos Gerenciales como incentivo
+
+edit$VIII12R5C1[is.na(edit$VIII12R5C1)] <- 2
+edit <- edit %>% mutate(bonosNoGerenciales = ifelse(VIII12R5C1 == 1, 0, 1)) #1 = Usa Bonos no Gerenciales como incentivo
+
+edit$VIII17R1C1[is.na(edit$VIII17R1C1)] <- 4
+edit <- edit %>% mutate(ascensosGerenciales = ifelse(VIII17R1C1 == 4, 0, 1)) #1 = Hay ascensos gerenciales
+
+edit$VIII16R1C1[is.na(edit$VIII16R1C1)] <- 4
+edit <- edit %>% mutate(ascensosNoGerenciales = ifelse(VIII16R1C1 == 4, 0, 1)) #1 = Hay ascensos no gerenciales
+
+edit$VIII9R1C1[is.na(edit$VIII9R1C1)] <- 4
+edit <- edit %>% mutate(metasProduccion = ifelse(VIII9R1C1 == 4, 0, 1)) #1 = Hay metas de produccion
+
+edit$VIII5R1C1[is.na(edit$VIII5R1C1)] <- 5
+edit <- edit %>% mutate(indicadoresDesemp = ifelse(VIII5R1C1 == 5, 0, 1)) #1 = Hay metas de produccion
