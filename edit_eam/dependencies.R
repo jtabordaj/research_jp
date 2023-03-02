@@ -15,6 +15,10 @@ simplify <- function(survey, variables){
     survey %>% select(any_of(variables))
 }
 
+isNaN <- function(x){
+    do.call(cbind, lapply(x, is.nan))
+}
+
 ## EAM
 
 readEAM <- function(){
