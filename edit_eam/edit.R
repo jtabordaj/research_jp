@@ -1,3 +1,4 @@
+source("./edit_eam/eam.R")
 source("./edit_eam/dependencies.R")
 
 ### Data cleaning
@@ -5,6 +6,9 @@ source("./edit_eam/dependencies.R")
 readEDIT()
 edit1718 <- simplify(edit_1718.csv, varNamesEDIT)
 edit <- edit1718
+
+mergeCriteriaEDIT <- c("NORDEMP", "CIIU 4")
+edit <- inner_join(edit, main1718, by = mergeCriteriaEDIT)
 
 ### Mutates
 
