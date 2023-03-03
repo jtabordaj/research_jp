@@ -19,6 +19,14 @@ isNaN <- function(x){
     do.call(cbind, lapply(x, is.nan))
 }
 
+hasNAs <- function(x){
+    if(length(which(is.na(edit$VALAGRI17))) == 0){
+        print("No NAs")
+    } else {
+        print("NAs detected")
+    }
+}
+
 ## EAM
 
 readEAM <- function(){

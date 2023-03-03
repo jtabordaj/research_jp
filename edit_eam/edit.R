@@ -220,7 +220,7 @@ edit <- edit %>% mutate(ratioMarketing = ocupadosMarketing/totOcupados2018)
 edit[isNaN(edit)] <- 0
 
 ## Fuentes de financiamiento
-# Numeric, miles de pesos
+# Numerics, miles de pesos
 
 edit$III1R1C1[is.na(edit$III1R1C1)] <- 0
 edit$III1R1C2[is.na(edit$III1R1C2)] <- 0
@@ -375,7 +375,7 @@ edit$III4R5C1[is.na(edit$III4R5C1)] <- 3
 edit <- edit %>% mutate(obsFinAtractiva = ifelse(III4R5C1 == 3, 0, 1)) #1 = Tuvo obstaculo por financiacion poco atractiva
 
 ## Obstaculos incertidumbre
-# Dummy
+# Dummys
 
 edit$I10R7C1[is.na(edit$I10R7C1)] <- 3
 edit <- edit %>% mutate(obsDemanda = ifelse(I10R7C1 == 3, 0, 1)) #1 = Tuvo obstaculo por incertidumbre frente a la demanda del B/S innovador
@@ -389,3 +389,27 @@ edit <- edit %>% mutate(obsImitacion = ifelse(I10R12C1 == 3, 0, 1)) #1 = Tuvo ob
 edit$I10R9C1[is.na(edit$I10R9C1)] <- 3
 edit <- edit %>% mutate(obsRentabilidad = ifelse(I10R9C1 == 3, 0, 1)) #1 = Tuvo obstaculo por incertidumbre a la rentabilidad del proyecto
 
+## Regiones de Colombia
+# Categorias + numerics
+
+edit <- edit %>% mutate(deptoDivipola = DPTO) #Divipola antes de mutar
+
+edit <- edit %>% mutate(region = ifelse(DPTO == 08 | DPTO == 13 | DPTO == 23 | DPTO == 47 | DPTO == 20 | DPTO == 44 | DPTO == 70, "Caribe",
+    ifelse(DPTO == 05 | DPTO == 15 | DPTO == 17 | DPTO == 25 | DPTO == 41 | DPTO == 54 | DPTO == 63 | DPTO == 66 | DPTO == 68 | DPTO == 73 | DPTO == 11, "Central",
+    ifelse(DPTO == 19 | DPTO == 27 | DPTO == 52 | DPTO == 76, "Pacifico",
+    ifelse(DPTO == 50 | DPTO == 18 | DPTO == 99 | DPTO == 85 , "Orinoquia", NA))))
+) # Regiones segun divipola
+
+hasNAs(edit$VALAGRI18)
+
+## Valor Agregado
+# Numerics
+
+edit <- edit %>% mutate(valorAgregado2017 = VALAGRI17) # Valor agregado segun la metodologia que tienes en documentation
+edit <- edit %>% mutate(valorAgregado2018 = VALAGRI18) # Valor agregado segun la metodologia que tienes en documentation
+
+## Productividad laboral
+# Numerics
+
+edit <- edit %>% mutate(productividadL2017 = (VALAGRI17/totOcupados2017)/1000000) # Productividad Laboral segun VA/TotalEmpleados en miles de millones de pesos
+edit <- edit %>% mutate(productividadL2018 = (VALAGRI18/totOcupados2018)/1000000) # Productividad Laboral segun VA/TotalEmpleados en miles de millones de pesos
