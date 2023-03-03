@@ -323,3 +323,65 @@ edit <- edit %>% mutate(metasProduccion = ifelse(VIII9R1C1 == 4, 0, 1)) #1 = Hay
 
 edit$VIII5R1C1[is.na(edit$VIII5R1C1)] <- 5
 edit <- edit %>% mutate(indicadoresDesemp = ifelse(VIII5R1C1 == 5, 0, 1)) #1 = Hay metas de produccion
+
+## Obstaculo recursos
+# Dummys
+
+edit$I10R1C1[is.na(edit$I10R1C1)] <- 3
+edit <- edit %>% mutate(obsRecursosPropios = ifelse(I10R1C1 == 3, 0, 1)) #1 = Tuvo obstaculos por escases de recursos propios
+
+edit$I10R10C1[is.na(edit$I10R10C1)] <- 3
+edit <- edit %>% mutate(obsFinancExterno = ifelse(I10R10C1 == 3, 0, 1)) #1 = Tuvo obstaculos por financiamiento externo
+
+## Obstaculos legales/personal
+# Dummys
+
+edit$I10R6C1[is.na(edit$I10R6C1)] <- 3
+edit <- edit %>% mutate(obsApoyoPublico = ifelse(I10R6C1 == 3, 0, 1)) #1 = Tuvo obstaculo por falta de informacion apoyo/instrumentos publicos
+
+edit$I10R4C1[is.na(edit$I10R4C1)] <- 3
+edit$I10R5C1[is.na(edit$I10R5C1)] <- 3
+edit <- edit %>% mutate(obsInformacion = ifelse(I10R4C1 == 3 | I10R5C1 == 3, 0, 1)) #1 = Tuvo obstaculo por falta de informacion de mercados o tecnologias
+
+edit$I10R2C1[is.na(edit$I10R2C1)] <- 3
+edit <- edit %>% mutate(obsPersonal = ifelse(I10R2C1 == 3, 0, 1)) #1 = Tuvo obstaculo por falta de personal calificado
+
+edit$I10R3C1[is.na(edit$I10R3C1)] <- 3
+edit <- edit %>% mutate(obsRegulaciones = ifelse(I10R3C1 == 3, 0, 1)) #1 = Tuvo obstaculo por incumplir regulaciones
+
+edit$I10R11C1[is.na(edit$I10R11C1)] <- 3
+edit <- edit %>% mutate(obsCooperacion = ifelse(I10R11C1 == 3, 0, 1)) #1 = Tuvo obstaculo por no poder cooperar con empresas
+
+edit$I10R13C1[is.na(edit$I10R13C1)] <- 3
+edit <- edit %>% mutate(obsDerechosProp = ifelse(I10R13C1 == 3, 0, 1)) #1 = Tuvo obstaculo por insuficiencia en el sistema de propiedad intelectual
+
+edit$I10R14C1[is.na(edit$I10R14C1)] <- 3
+edit <- edit %>% mutate(obsInspeccion = ifelse(I10R14C1 == 3, 0, 1)) #1 = Tuvo obstaculo por ausencia de servicios de inspeccion
+
+edit$III4R4C1[is.na(edit$III4R4C1)] <- 3
+edit <- edit %>% mutate(obsTramite = ifelse(III4R4C1 == 3, 0, 1)) #1 = Tuvo obstaculo por tramites excesivos
+
+edit$III4R6C1[is.na(edit$III4R6C1)] <- 3
+edit <- edit %>% mutate(obsIntermediacion = ifelse(III4R6C1 == 3, 0, 1)) #1 = Tuvo obstaculo por intermediacion financiera
+
+edit$III4R3C1[is.na(edit$III4R3C1)] <- 3
+edit <- edit %>% mutate(obsRequisitos = ifelse(III4R3C1 == 3, 0, 1)) #1 = Tuvo obstaculo por cumplimiento de requisitos
+
+edit$III4R5C1[is.na(edit$III4R5C1)] <- 3
+edit <- edit %>% mutate(obsFinAtractiva = ifelse(III4R5C1 == 3, 0, 1)) #1 = Tuvo obstaculo por financiacion poco atractiva
+
+## Obstaculos incertidumbre
+# Dummy
+
+edit$I10R7C1[is.na(edit$I10R7C1)] <- 3
+edit <- edit %>% mutate(obsDemanda = ifelse(I10R7C1 == 3, 0, 1)) #1 = Tuvo obstaculo por incertidumbre frente a la demanda del B/S innovador
+
+edit$I10R8C1[is.na(edit$I10R8C1)] <- 3
+edit <- edit %>% mutate(obsTecnica = ifelse(I10R8C1 == 3, 0, 1)) #1 = Tuvo obstaculo por incertidumbre frente al exito en la ejecucion tecnica
+
+edit$I10R12C1[is.na(edit$I10R12C1)] <- 3
+edit <- edit %>% mutate(obsImitacion = ifelse(I10R12C1 == 3, 0, 1)) #1 = Tuvo obstaculo por incertidumbre a potenciales imitaciones
+
+edit$I10R9C1[is.na(edit$I10R9C1)] <- 3
+edit <- edit %>% mutate(obsRentabilidad = ifelse(I10R9C1 == 3, 0, 1)) #1 = Tuvo obstaculo por incertidumbre a la rentabilidad del proyecto
+
