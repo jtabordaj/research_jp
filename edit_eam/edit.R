@@ -405,11 +405,30 @@ hasNAs(edit$VALAGRI18)
 ## Valor Agregado
 # Numerics
 
-edit <- edit %>% mutate(valorAgregado2017 = VALAGRI17) # Valor agregado segun la metodologia que tienes en documentation
-edit <- edit %>% mutate(valorAgregado2018 = VALAGRI18) # Valor agregado segun la metodologia que tienes en documentation
+edit <- edit %>% mutate(valorAgregado2017 = VALAGRI17/1000000) # Valor agregado segun la metodologia que tienes en documentation en miles de millones de pesos
+edit <- edit %>% mutate(valorAgregado2018 = VALAGRI18/1000000) # Valor agregado segun la metodologia que tienes en documentation en miles de millones de pesos
 
 ## Productividad laboral
 # Numerics
 
 edit <- edit %>% mutate(productividadL2017 = (VALAGRI17/totOcupados2017)/1000000) # Productividad Laboral segun VA/TotalEmpleados en miles de millones de pesos
 edit <- edit %>% mutate(productividadL2018 = (VALAGRI18/totOcupados2018)/1000000) # Productividad Laboral segun VA/TotalEmpleados en miles de millones de pesos
+
+## Ratio comercio exterior (XM)
+
+edit <- edit %>% mutate(ratioX2017 = PORCVT17/VALORVEN17) # Que parte de la venta fue al extranjero (ratio) 2017
+edit <- edit %>% mutate(ratioX2018 = PORCVT18/VALORVEN18) # Que parte de la venta fue al extranjero (ratio) 2018
+
+edit <- edit %>% mutate(ratioM2017 = VALORCX17/VALORVEN17) # Materias primas compradas al extranjero (ratio) 2017
+edit <- edit %>% mutate(ratioM2018 = VALORCX18/VALORVEN18) # Materias primas compradas al extranjero (ratio) 2018
+
+## Inversion
+
+edit$II1R10C1[is.na(edit$II1R10C1)] <- 0
+edit$II1R10C2[is.na(edit$II1R10C2)] <- 0
+
+edit <- edit %>% mutate(gastoACTI2017 = II1R10C1) # Gasto en ACTI 2017, miles de pesos
+edit <- edit %>% mutate(gastoACTI2018 = II1R10C2) # Gasto en ACTI 2018, miles de pesos
+
+edit <- edit %>% mutate(inversion2017 = (gastoACTI2017/valorAgregado2017)*100) # Inversion 2017 por ACTI/VA*100
+edit <- edit %>% mutate(inversion2018 = (gastoACTI2018/valorAgregado2018)*100) # Inversion 2018 por ACTI/VA*100

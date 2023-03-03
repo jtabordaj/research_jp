@@ -20,7 +20,7 @@ isNaN <- function(x){
 }
 
 hasNAs <- function(x){
-    if(length(which(is.na(edit$VALAGRI17))) == 0){
+    if(length(which(is.na(x))) == 0){
         print("No NAs")
     } else {
         print("NAs detected")
