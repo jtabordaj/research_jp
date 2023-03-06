@@ -68,9 +68,23 @@ varNamesEDIT <- c("NORDEMP", "CIIU 4", "TIPOLO",
     "III4R3C1", "III4R4C1", "III4R5C1", "III4R6C1",
     "IV1R1C1", "IV1R2C1", "IV1R3C1", "IV1R4C1", "IV1R5C1", "IV1R6C1", "IV1R7C1", "IV1R8C1", "IV1R9C1", "IV1R10C1",
     "IV1R1C2", "IV1R2C2", "IV1R3C2", "IV1R4C2", "IV1R5C2", "IV1R6C2", "IV1R7C2", "IV1R8C2", "IV1R9C2", "IV1R10C2",
-    "IV1R11C1", "IV1R11C2", "IV1R11C3", "IV1R11C4",
+    "IV1R11C1", "IV1R11C2", "IV1R11C3", "IV1R11C4", "IV4R11C2",
     "IV4R1C3", "IV4R2C3", "IV4R3C3", "IV4R4C3", "IV4R5C3" ,"IV4R6C3",
     "V2R1C1","V2R2C1", "V2R3C1", "V2R4C1", "V3R5C1", "V2R7C1", "V2R15C1", "V2R17C1",
     "V3R1C1", "V3R2C1", "V3R3C1", "V3R4C1", "V3R5C1", "V3R6C1", "V3R7C1", "V3R8C1", "V3R9C1", "V3R10C1", "V3R11C1", "V3R12C1", "V3R4C8", "V3R2C8", "V3R1C8",
-    "VIII5R1C1", "VIII9R1C1", "VIII12R5C1", "VIII14R5C1", "VIII16R1C1", "VIII17R1C1"
+    "VIII1R1C1", "VIII5R1C1", "VIII9R1C1", "VIII12R5C1", "VIII14R5C1", "VIII16R1C1", "VIII17R1C1"
 )
+
+## Output
+
+varNamesOutput <- c("NORDEMP", "innProceso", "innProducto", "innOrganizacional", "mejoraBS", "aumentaBS", "mantienePosicion", "aumentaProductividad", "reduceCostoFactores",
+"reduceCostoLogistico", "reduceCostoOtros", "innRadical", "innIncremental", "innovadorEstricto", "innovadorAmplio", "innovadorPotencial", "noInnovadora", "otroTipo",  
+"usaTICs", "sinNetwork", "networkNoEmpresa", "networkEmpresas", "modificaOtros", "propietarioActual", "totOcupados2017", "totOcupados2018", "catOcupados2017", "catOcupados2018", 
+"ciiu4Digitos", "deptoDivipola", "region", "valorAgregado2017", "valorAgregado2018", "productividadL2017", "productividadL2018", "ratioX2017", "ratioX2018", "ratioM2017", "ratioM2018",
+"inversion2017", "inversion2018", "ocupadosACTI2017", "ocupadosACTI2018", "ratioActi2017", "ratioActi2018", "totOcupados2017", "totOcupados2018", "educadosColegio2017", "educadosColegio2018",
+"educadosSuperior2017", "educadosSuperior2018", "educadosPosgrado2017", "educadosPosgrado2018", "educadosOtro2017", "educadosOtro2018", "ocupadosProduccion", "ratioProduccion", "ocupadosID", 
+"ratioID", "ocupadosAdmin", "ratioAdmin", "ocupadosMarketing", "ratioMarketing", "hayMujeres", "recursosPropio2017", "recursosPropio2018", "recursosBanca2017", "recursosBanca2018", "recursosConglomerado2017", 
+"recursosConglomerado2018", "recursosEmpresas2017", "recursosEmpresas2018", "contratoEstado", "sniSENA", "sniCamaraComercio", "sniICONTEC", "sniUnivSNCTI", "sniSIC", "sniMinciencias", "sniConsultores", "sniProcolombia", 
+"sniINNPulsa", "obsRecursosPropios", "obsFinancExterno", "obsApoyoPublico", "obsInformacion", "obsPersonal", "obsRegulaciones", "obsCooperacion", "obsDerechosProp", "obsInspeccion", "obsApoyoPublico", "obsTramite", 
+"obsIntermediacion", "obsRequisitos", "obsFinAtractiva", "obsDemanda", "obsTecnica", "obsImitacion", "obsRentabilidad", "bonosGerenciales", "bonosNoGerenciales", "ascensosGerenciales", "ascensosNoGerenciales",
+"metasProduccion", "indicadoresDesemp") 

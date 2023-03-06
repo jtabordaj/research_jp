@@ -112,6 +112,11 @@ edit <- edit %>% mutate(sinNetwork = ifelse(modificaOtros + networkEmpresas + ne
 
 # Cuando hagas dicc revisa las organizaciones de cada coso
 
+## Propiedad de la empresa
+# Dummy
+
+edit <- edit %>% mutate(propietarioActual = VIII1R1C1) # 1 = Fundador; 2 = Familiar del fundador; 3 = Otro
+
 ## Personal ocupado
 # Numerics + Categories
 
@@ -218,6 +223,12 @@ edit <- edit %>% mutate(ocupadosMarketing = IV4R3C3)
 edit <- edit %>% mutate(ratioMarketing = ocupadosMarketing/totOcupados2018)
 
 edit[isNaN(edit)] <- 0
+
+## Genero de ocupados
+# Dummy
+
+edit$IV4R11C2[is.na(edit$IV4R11C2)] <- 0
+edit <- edit %>% mutate(hayMujeres = ifelse(IV4R11C2 > 0, 1 ,0)) #1= Hay mujeres involucradas en ACTI
 
 ## Fuentes de financiamiento
 # Numerics, miles de pesos
