@@ -29,9 +29,19 @@ hasNAs <- function(x){
 
 ## EAM
 
-readEAM <- function(){
+readEAM <- function(grep){
     fileList <- list.files("./edit_eam/data/eam")
-    for(i in fileList){
+    filtered <- fileList[grep(grep, fileList)]
+    for(i in filtered){
+    path <- paste("./edit_eam/data/eam/",i, sep = "")
+    assign(paste(i, sep = ""), read_csv(path), envir = .GlobalEnv)
+   }
+}
+
+readEAM2 <- function(grep){
+    fileList <- list.files("./edit_eam/data/eam")
+    filtered <- fileList[grep(grep, fileList)]
+    for(i in filtered){
     path <- paste("./edit_eam/data/eam/",i, sep = "")
     assign(paste(i, sep = ""), read_csv2(path), envir = .GlobalEnv)
    }
@@ -48,13 +58,24 @@ varNamesEAM <- c("NORDEMP", "Nordemp", "nordemp",
 
 ## EDIT
 
-readEDIT <- function(){
+readEDIT <- function(grep){
     fileList <- list.files("./edit_eam/data/edit")
-    for(i in fileList){
+    filtered <- fileList[grep(grep, fileList)]
+    for(i in filtered){
+    path <- paste("./edit_eam/data/edit/",i, sep = "")
+    assign(paste(i, sep = ""), read_csv(path), envir = .GlobalEnv)
+   }
+}
+
+readEDIT2 <- function(grep){
+    fileList <- list.files("./edit_eam/data/edit")
+    filtered <- fileList[grep(grep, fileList)]
+    for(i in filtered){
     path <- paste("./edit_eam/data/edit/",i, sep = "")
     assign(paste(i, sep = ""), read_csv2(path), envir = .GlobalEnv)
    }
 }
+
 
 varNamesEDIT <- c("NORDEMP", "CIIU 4", "TIPOLO",
     "I1R4C2", "I1R4C2N", "I1R4C2M", "I1R6C2", "I1R5C2", 
