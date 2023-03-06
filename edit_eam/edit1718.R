@@ -411,7 +411,6 @@ edit <- edit %>% mutate(region = ifelse(DPTO == 08 | DPTO == 13 | DPTO == 23 | D
     ifelse(DPTO == 50 | DPTO == 18 | DPTO == 99 | DPTO == 85 , "Orinoquia", NA))))
 ) # Regiones segun divipola
 
-hasNAs(edit$VALAGRI18)
 
 ## Valor Agregado
 # Numerics
