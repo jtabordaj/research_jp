@@ -109,3 +109,15 @@ varNamesOutput <- c("NORDEMP", "innProceso", "innProducto", "innOrganizacional",
 "sniINNPulsa", "obsRecursosPropios", "obsFinancExterno", "obsApoyoPublico", "obsInformacion", "obsPersonal", "obsRegulaciones", "obsCooperacion", "obsDerechosProp", "obsInspeccion", "obsApoyoPublico", "obsTramite", 
 "obsIntermediacion", "obsRequisitos", "obsFinAtractiva", "obsDemanda", "obsTecnica", "obsImitacion", "obsRentabilidad", "bonosGerenciales", "bonosNoGerenciales", "ascensosGerenciales", "ascensosNoGerenciales",
 "metasProduccion", "indicadoresDesemp") 
+
+varNamesOutput1920 <- c("NORDEMP", "innProceso", "innProducto", "innOrganizacional", "mejoraBS", "aumentaBS", "mantienePosicion", "aumentaProductividad", "reduceCostoFactores",
+"reduceCostoLogistico", "reduceCostoOtros", "innRadical", "innIncremental", "innovadorEstricto", "innovadorAmplio", "innovadorPotencial", "noInnovadora", "otroTipo",  
+"usaTICs", "sinNetwork", "networkNoEmpresa", "networkEmpresas", "modificaOtros", "propietarioActual", "totOcupados2019", "totOcupados2020", "catOcupados2019", "catOcupados2020", 
+"ciiu4Digitos", "deptoDivipola", "region", "valorAgregado2019", "valorAgregado2020", "productividadL2019", "productividadL2020", "ratioX2019", "ratioX2020", "ratioM2019", "ratioM2020",
+"inversion2019", "inversion2020", "ocupadosACTI2019", "ocupadosACTI2020", "ratioActi2019", "ratioActi2020", "totOcupados2019", "totOcupados2020", "educadosColegio2019", "educadosColegio2020",
+"educadosSuperior2019", "educadosSuperior2020", "educadosPosgrado2019", "educadosPosgrado2020", "educadosOtro2019", "educadosOtro2020", "ocupadosProduccion", "ratioProduccion", "ocupadosID", 
+"ratioID", "ocupadosAdmin", "ratioAdmin", "ocupadosMarketing", "ratioMarketing", "hayMujeres", "recursosPropio2019", "recursosPropio2020", "recursosBanca2019", "recursosBanca2020", "recursosConglomerado2019", 
+"recursosConglomerado2020", "recursosEmpresas2019", "recursosEmpresas2020", "contratoEstado", "sniSENA", "sniCamaraComercio", "sniICONTEC", "sniUnivSNCTI", "sniSIC", "sniMinciencias", "sniConsultores", "sniProcolombia", 
+"sniINNPulsa", "obsRecursosPropios", "obsFinancExterno", "obsApoyoPublico", "obsInformacion", "obsPersonal", "obsRegulaciones", "obsCooperacion", "obsDerechosProp", "obsInspeccion", "obsApoyoPublico", "obsTramite", 
+"obsIntermediacion", "obsRequisitos", "obsFinAtractiva", "obsDemanda", "obsTecnica", "obsImitacion", "obsRentabilidad", "bonosGerenciales", "bonosNoGerenciales", "ascensosGerenciales", "ascensosNoGerenciales",
+"metasProduccion", "indicadoresDesemp") 
