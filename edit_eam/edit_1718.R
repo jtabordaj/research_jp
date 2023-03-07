@@ -1,4 +1,4 @@
-source("./edit_eam/eam.R")
+source("./edit_eam/eam_1718.R")
 source("./edit_eam/dependencies.R")
 
 ### Data cleaning

@@ -1,15 +1,17 @@
-source("./edit_eam/eam.R")
+source("./edit_eam/eam_1920.R")
 source("./edit_eam/dependencies.R")
 
 ### Data cleaning
 
-source("./edit_eam/dependencies.R")
-readEDIT()
+readEDIT2("1920.csv$")
+
 edit1920 <- simplify(edit_1920.csv, varNamesEDIT)
+edit1920 <- edit1920[-2,]
+
 edit <- edit1920
 
-mergeCriteriaEDIT <- c("NORDEMP", "CIIU 4")
-edit <- inner_join(edit, main1718, by = mergeCriteriaEDIT)
+mergeCriteriaEDIT <- c("NORDEMP")
+edit <- inner_join(edit, main1920, by = mergeCriteriaEDIT)
 
 ### Mutates
 
@@ -121,16 +123,16 @@ edit <- edit %>% mutate(propietarioActual = VIII1R1C1) # 1 = Fundador; 2 = Famil
 ## Personal ocupado
 # Numerics + Categories
 
-edit <- edit %>% mutate(totOcupados2017 = IV1R11C1)
-edit <- edit %>% mutate(totOcupados2018 = IV1R11C2)
+edit <- edit %>% mutate(totOcupados2019 = IV1R11C1)
+edit <- edit %>% mutate(totOcupados2020 = IV1R11C2)
 
-edit <- edit %>% mutate(catOcupados2017 = ifelse(IV1R11C1 <= 10, 1, 
+edit <- edit %>% mutate(catOcupados2019 = ifelse(IV1R11C1 <= 10, 1, 
     ifelse(IV1R11C1 > 10 & IV1R11C1 <= 50, 2,
     ifelse(IV1R11C1 > 50 & IV1R11C1 <= 200, 3, 
     ifelse(IV1R11C1 > 200, 4, 0))))
 ) # 1 = Menos de 10. 2 = Entre 10 y 50. 3 = Entre 50 y 200. 4 = Mas de 200 
 
-edit <- edit %>% mutate(catOcupados2018 = ifelse(IV1R11C2 <= 10, 1, 
+edit <- edit %>% mutate(catOcupados2020 = ifelse(IV1R11C2 <= 10, 1, 
     ifelse(IV1R11C2 > 10 & IV1R11C2 <= 50, 2,
     ifelse(IV1R11C2 > 50 & IV1R11C2 <= 200, 3, 
     ifelse(IV1R11C2 > 200, 4, 0))))
@@ -139,8 +141,7 @@ edit <- edit %>% mutate(catOcupados2018 = ifelse(IV1R11C2 <= 10, 1,
 ## CIIU
 # Categories, pero numericas
 
-colnames(edit)[2] <- "ciiu4"
-edit <- edit %>% mutate(ciiu4Digitos = ciiu4)
+edit <- edit %>% mutate(ciiu4Digitos = CIIU4)
 
 ## Personal en ACTI
 # Numerics
@@ -148,11 +149,11 @@ edit <- edit %>% mutate(ciiu4Digitos = ciiu4)
 edit$IV1R11C3[is.na(edit$IV1R11C3)] <- 0
 edit$IV1R11C4[is.na(edit$IV1R11C4)] <- 0
 
-edit <- edit %>% mutate(ocupadosACTI2017 = IV1R11C3)
-edit <- edit %>% mutate(ocupadosACTI2018 = IV1R11C4)
+edit <- edit %>% mutate(ocupadosACTI2019 = IV1R11C3)
+edit <- edit %>% mutate(ocupadosACTI2020 = IV1R11C4)
 
-edit <- edit %>% mutate(ratioActi2017 = ocupadosACTI2017/totOcupados2017)
-edit <- edit %>% mutate(ratioActi2018 = ocupadosACTI2018/totOcupados2018)
+edit <- edit %>% mutate(ratioActi2019 = ocupadosACTI2019/totOcupados2019)
+edit <- edit %>% mutate(ratioActi2020 = ocupadosACTI2020/totOcupados2020)
 
 edit[isNaN(edit)] <- 0
 
@@ -165,8 +166,8 @@ edit$IV1R8C1[is.na(edit$IV1R8C1)] <- 0
 edit$IV1R7C2[is.na(edit$IV1R7C2)] <- 0
 edit$IV1R8C2[is.na(edit$IV1R8C2)] <- 0
 
-edit <- edit %>% mutate(educadosColegio2017 = IV1R7C1 + IV1R8C1)
-edit <- edit %>% mutate(educadosColegio2018 = IV1R7C2 + IV1R8C2)
+edit <- edit %>% mutate(educadosColegio2019 = IV1R7C1 + IV1R8C1)
+edit <- edit %>% mutate(educadosColegio2020 = IV1R7C2 + IV1R8C2)
 
 edit$IV1R4C1[is.na(edit$IV1R4C1)] <- 0
 edit$IV1R5C1[is.na(edit$IV1R5C1)] <- 0
@@ -178,8 +179,8 @@ edit$IV1R5C2[is.na(edit$IV1R5C2)] <- 0
 edit$IV1R6C2[is.na(edit$IV1R6C2)] <- 0
 edit$IV1R9C2[is.na(edit$IV1R9C2)] <- 0
 
-edit <- edit %>% mutate(educadosSuperior2017 = IV1R4C1 + IV1R5C1 + IV1R6C1 + IV1R9C1)
-edit <- edit %>% mutate(educadosSuperior2018 = IV1R4C2 + IV1R5C2 + IV1R6C2 + IV1R9C2)
+edit <- edit %>% mutate(educadosSuperior2019 = IV1R4C1 + IV1R5C1 + IV1R6C1 + IV1R9C1)
+edit <- edit %>% mutate(educadosSuperior2020 = IV1R4C2 + IV1R5C2 + IV1R6C2 + IV1R9C2)
 
 edit$IV1R1C1[is.na(edit$IV1R1C1)] <- 0
 edit$IV1R2C1[is.na(edit$IV1R2C1)] <- 0
@@ -189,39 +190,39 @@ edit$IV1R1C2[is.na(edit$IV1R1C2)] <- 0
 edit$IV1R2C2[is.na(edit$IV1R2C2)] <- 0
 edit$IV1R3C2[is.na(edit$IV1R3C2)] <- 0
 
-edit <- edit %>% mutate(educadosPosgrado2017 = IV1R1C1 + IV1R2C1 + IV1R3C1)
-edit <- edit %>% mutate(educadosPosgrado2018 = IV1R1C2 + IV1R2C2 + IV1R3C2)
+edit <- edit %>% mutate(educadosPosgrado2019 = IV1R1C1 + IV1R2C1 + IV1R3C1)
+edit <- edit %>% mutate(educadosPosgrado2020 = IV1R1C2 + IV1R2C2 + IV1R3C2)
 
 edit$IV1R10C1[is.na(edit$IV1R10C1)] <- 0
 edit$IV1R10C2[is.na(edit$IV1R10C2)] <- 0
 
-edit <- edit %>% mutate(educadosOtro2017 = IV1R10C1)
-edit <- edit %>% mutate(educadosOtro2018 = IV1R10C2)
+edit <- edit %>% mutate(educadosOtro2019 = IV1R10C1)
+edit <- edit %>% mutate(educadosOtro2020 = IV1R10C2)
 
 ## Ratio de ocupacion del capital humano
 # Numerics
-# Nota: la encuesta solo tiene ratios para 2018
+# Nota: la encuesta solo tiene ratios para 2020
 
 edit$IV4R4C3[is.na(edit$IV4R4C3)] <- 0
 
 edit <- edit %>% mutate(ocupadosProduccion = IV4R4C3)
-edit <- edit %>% mutate(ratioProduccion = ocupadosProduccion/totOcupados2018)
+edit <- edit %>% mutate(ratioProduccion = ocupadosProduccion/totOcupados2020)
 
 edit$IV4R11C3[is.na(edit$IV4R11C3)] <- 0
 
 edit <- edit %>% mutate(ocupadosID = IV4R11C3)
-edit <- edit %>% mutate(ratioID = ocupadosID/totOcupados2018)
+edit <- edit %>% mutate(ratioID = ocupadosID/totOcupados2020)
 
 edit$IV4R1C3[is.na(edit$IV4R1C3)] <- 0
 edit$IV4R2C3[is.na(edit$IV4R2C3)] <- 0
 edit$IV4R5C3[is.na(edit$IV4R5C3)] <- 0
 
 edit <- edit %>% mutate(ocupadosAdmin = IV4R1C3 + IV4R2C3 + IV4R5C3)
-edit <- edit %>% mutate(ratioAdmin = ocupadosAdmin/totOcupados2018)
+edit <- edit %>% mutate(ratioAdmin = ocupadosAdmin/totOcupados2020)
 
 edit$IV4R3C3[is.na(edit$IV4R3C3)] <- 0
 edit <- edit %>% mutate(ocupadosMarketing = IV4R3C3)
-edit <- edit %>% mutate(ratioMarketing = ocupadosMarketing/totOcupados2018)
+edit <- edit %>% mutate(ratioMarketing = ocupadosMarketing/totOcupados2020)
 
 edit[isNaN(edit)] <- 0
 
@@ -237,36 +238,36 @@ edit <- edit %>% mutate(hayMujeres = ifelse(IV4R11C2 > 0, 1 ,0)) #1= Hay mujeres
 edit$III1R1C1[is.na(edit$III1R1C1)] <- 0
 edit$III1R1C2[is.na(edit$III1R1C2)] <- 0
 
-edit <- edit %>% mutate(recursosPropio2017 = III1R1C1)
-edit <- edit %>% mutate(recursosPropio2018 = III1R1C2)
+edit <- edit %>% mutate(recursosPropio2019 = III1R1C1)
+edit <- edit %>% mutate(recursosPropio2020 = III1R1C2)
 
 edit$III1R4C1[is.na(edit$III1R4C1)] <- 0
 edit$III1R4C2[is.na(edit$III1R4C2)] <- 0
 edit$III1R4C3[is.na(edit$III1R4C3)] <- 0
 edit$III1R4C4[is.na(edit$III1R4C4)] <- 0
 
-edit <- edit %>% mutate(recursosBanca2017 = III1R4C1 + III1R4C2)
-edit <- edit %>% mutate(recursosBanca2018 = III1R4C3 + III1R4C4)
+edit <- edit %>% mutate(recursosBanca2019 = III1R4C1 + III1R4C2)
+edit <- edit %>% mutate(recursosBanca2020 = III1R4C3 + III1R4C4)
 
 edit$III1R2C1[is.na(edit$III1R2C1)] <- 0
 edit$III1R2C2[is.na(edit$III1R2C2)] <- 0
 
-edit <- edit %>% mutate(recursosConglomerado2017 = III1R2C1)
-edit <- edit %>% mutate(recursosConglomerado2018 = III1R2C2)
+edit <- edit %>% mutate(recursosConglomerado2019 = III1R2C1)
+edit <- edit %>% mutate(recursosConglomerado2020 = III1R2C2)
 
 edit$III1R3C1[is.na(edit$III1R3C1)] <- 0
 edit$III1R3C2[is.na(edit$III1R3C2)] <- 0
 
-edit <- edit %>% mutate(recursosPublicos2017 = III1R3C1)
-edit <- edit %>% mutate(recursosPublicos2018 = III1R3C2)
+edit <- edit %>% mutate(recursosPublicos2019 = III1R3C1)
+edit <- edit %>% mutate(recursosPublicos2020 = III1R3C2)
 
 edit$III1R5C1[is.na(edit$III1R5C1)] <- 0
 edit$III1R5C2[is.na(edit$III1R5C2)] <- 0
 edit$III1R5C3[is.na(edit$III1R5C3)] <- 0
 edit$III1R5C4[is.na(edit$III1R5C4)] <- 0
 
-edit <- edit %>% mutate(recursosEmpresas2017 = III1R5C1 + III1R5C2)
-edit <- edit %>% mutate(recursosEmpresas2018 = III1R5C3 + III1R5C4)
+edit <- edit %>% mutate(recursosEmpresas2019 = III1R5C1 + III1R5C2)
+edit <- edit %>% mutate(recursosEmpresas2020 = III1R5C3 + III1R5C4)
 
 edit$III1R6C1[is.na(edit$III1R6C1)] <- 0
 edit$III1R6C2[is.na(edit$III1R6C2)] <- 0
@@ -278,8 +279,8 @@ edit$III1R7C2[is.na(edit$III1R7C2)] <- 0
 edit$III1R7C3[is.na(edit$III1R7C3)] <- 0
 edit$III1R7C4[is.na(edit$III1R7C4)] <- 0
 
-edit <- edit %>% mutate(recursosOtros2017 = III1R6C1 + III1R6C2  + III1R7C1 + III1R7C2)
-edit <- edit %>% mutate(recursosOtros2018 = III1R6C3 + III1R6C4  + III1R7C3 + III1R7C4)
+edit <- edit %>% mutate(recursosOtros2019 = III1R6C1 + III1R6C2  + III1R7C1 + III1R7C2)
+edit <- edit %>% mutate(recursosOtros2020 = III1R6C3 + III1R6C4  + III1R7C3 + III1R7C4)
 
 ## Contrato con el estado
 # Dummy
@@ -416,30 +417,29 @@ edit <- edit %>% mutate(region = ifelse(DPTO == 08 | DPTO == 13 | DPTO == 23 | D
 ## Valor Agregado
 # Numerics
 
-edit <- edit %>% mutate(valorAgregado2017 = VALAGRI17/1000000) # Valor agregado segun la metodologia que tienes en documentation en miles de millones de pesos
-edit <- edit %>% mutate(valorAgregado2018 = VALAGRI18/1000000) # Valor agregado segun la metodologia que tienes en documentation en miles de millones de pesos
+edit <- edit %>% mutate(valorAgregado2019 = VALAGRI19/1000000) # Valor agregado segun la metodologia que tienes en documentation en miles de millones de pesos
+edit <- edit %>% mutate(valorAgregado2020 = VALAGRI20/1000000) # Valor agregado segun la metodologia que tienes en documentation en miles de millones de pesos
 
 ## Productividad laboral
 # Numerics
 
-edit <- edit %>% mutate(productividadL2017 = (VALAGRI17/totOcupados2017)/1000000) # Productividad Laboral segun VA/TotalEmpleados en miles de millones de pesos
-edit <- edit %>% mutate(productividadL2018 = (VALAGRI18/totOcupados2018)/1000000) # Productividad Laboral segun VA/TotalEmpleados en miles de millones de pesos
-
+edit <- edit %>% mutate(productividadL2019 = (VALAGRI19/totOcupados2019)/1000000) # Productividad Laboral segun VA/TotalEmpleados en miles de millones de pesos
+edit <- edit %>% mutate(productividadL2020 = (VALAGRI20/totOcupados2020)/1000000) # Productividad Laboral segun VA/TotalEmpleados en miles de millones de pesos
 ## Ratio comercio exterior (XM)
 
-edit <- edit %>% mutate(ratioX2017 = PORCVT17/VALORVEN17) # Que parte de la venta fue al extranjero (ratio) 2017
-edit <- edit %>% mutate(ratioX2018 = PORCVT18/VALORVEN18) # Que parte de la venta fue al extranjero (ratio) 2018
+edit <- edit %>% mutate(ratioX2019 = PORCVT19/VALORVEN19) # Que parte de la venta fue al extranjero (ratio) 2017
+edit <- edit %>% mutate(ratioX2020 = PORCVT20/VALORVEN20) # Que parte de la venta fue al extranjero (ratio) 2018
 
-edit <- edit %>% mutate(ratioM2017 = VALORCX17/VALORVEN17) # Materias primas compradas al extranjero (ratio) 2017
-edit <- edit %>% mutate(ratioM2018 = VALORCX18/VALORVEN18) # Materias primas compradas al extranjero (ratio) 2018
+edit <- edit %>% mutate(ratioM2019 = VALORCX19/VALORVEN19) # Materias primas compradas al extranjero (ratio) 2017
+edit <- edit %>% mutate(ratioM2020 = VALORCX20/VALORVEN20) # Materias primas compradas al extranjero (ratio) 2018
 
 ## Inversion
 
 edit$II1R10C1[is.na(edit$II1R10C1)] <- 0
 edit$II1R10C2[is.na(edit$II1R10C2)] <- 0
 
-edit <- edit %>% mutate(gastoACTI2017 = II1R10C1) # Gasto en ACTI 2017, miles de pesos
-edit <- edit %>% mutate(gastoACTI2018 = II1R10C2) # Gasto en ACTI 2018, miles de pesos
+edit <- edit %>% mutate(gastoACTI2019 = II1R10C1) # Gasto en ACTI 2017, miles de pesos
+edit <- edit %>% mutate(gastoACTI2020 = II1R10C2) # Gasto en ACTI 2018, miles de pesos
 
-edit <- edit %>% mutate(inversion2017 = (gastoACTI2017/valorAgregado2017)*100) # Inversion 2017 por ACTI/VA*100
-edit <- edit %>% mutate(inversion2018 = (gastoACTI2018/valorAgregado2018)*100) # Inversion 2018 por ACTI/VA*100
+edit <- edit %>% mutate(inversion2019 = (gastoACTI2019/valorAgregado2019)*100) # Inversion 2017 por ACTI/VA*100
+edit <- edit %>% mutate(inversion2020 = (gastoACTI2020/valorAgregado2020)*100) # Inversion 2018 por ACTI/VA*100
