@@ -1,0 +1,139 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath}				% For use of  a large range of formulas, commands, and symbols
+\usepackage[utf8]{inputenc}			% Specifies the encoding. (Zeichenkodierung, bindet Sonderzeichen mit ein)
+\usepackage[T1]{fontenc}			% Include the accented characters as individual glyphs(ö is one single glyph, not an o with an added accent)
+\usepackage[spanish]{babel}			% Specifies the language of doucment (translates "Table of Contents"...)
+\usepackage{graphicx}				% For including graphics
+\graphicspath{{images}}
+\usepackage{subfigure}				% For including "sub"figures
+\usepackage{lscape}					% Rotates text within environment by 90 degrees.
+\usepackage{pst-plot, pstricks}		% plot­ting of data (typ­i­cally from ex­ter­nal files), plotting lines, rectangles...
+\usepackage{fancybox,amssymb,color}	% fancybox: frames, rotations - amssymb: extension for amsmath - color: set the font color, text background, or page
+\usepackage{setspace}				% allows to specifiy the space between lines
+\usepackage{booktabs} 				% For prettier tables
+\onehalfspacing
+\pagestyle{plain}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{1em}
+\setlength{\parskip}{1ex}
+\usepackage{geometry}   		 % definition of the page layout
+\geometry{
+	a4paper,					 % format
+	left=30mm,					 % left margin
+	right=30mm,					 % right margin
+	top=25mm,					 % distance upwards
+	bottom=25mm,				 % distance downwards
+	includehead,				 % distance from upwards till the page header
+}
+
+
+\begin{document}
+
+\begin{center}
+	\textbf{Diccionario de Datos} \\
+	Ultima vez editado: \today
+\end{center}
+\vspace{10mm}
+
+\textbf{Nivel de desagregación de los datos}
+\begin{enumerate}
+	\item A nivel firma: NORDEMP
+\end{enumerate}
+
+Si un dato tiene mas de una observacion en la misma encuesta, pues se captura sobre dos espacios de tiempo distintos, la base de datos agrega un numero de dos o cuatro digitos que corresponde al periodo de tiempo. 
+
+Los conceptos sobre tipo, taxonomía, tipologia y demás elementos relacionados a la innovación son tomados de la metodología oficial de la encuesta EDIT para 2017-2018.
+
+\begin{center}
+	\textbf{\textbf{Ejemplo}: valorAgregado18 indica que es el dato de valor agregado para 2018; totOcupados2017 indica que es el numero de ocupados totales para 2017.}
+\end{center}
+
+
+Las bases de datos se componen de 103 variables, repartidas en varios ejes temáticos de interés:
+
+\section{Tipo de innovación}
+
+\begin{enumerate}
+	\item innProceso: Variable numerica que indica el numero de innovaciones en métodos de producción, distribución, entrega, o sistemas logísticos introducidas por la firma en el periodo de la encuesta.
+	\item innProducto: Variable numerica que indica el numero de innovaciones en canales para promoción y venta, o modificaciones significativas en el empaque o diseño del producto introducidas por la firma en el periodo de la encuesta.
+	\item innOrganizacional: Variable numerica que indica el numero de innovaciones en sistema de gestión del conocimiento, organización del lugar de trabajo, o en la gestión de las relaciones externas de la empresa introducidas por  en el periodo de la encuesta.
+\end{enumerate}
+
+\section{Impacto de la innovación}
+
+\begin{enumerate}
+	\item mejoraBS: Variable binaria que toma el valor de 1 si la innovación tuvo impacto en la mejora de calidad de bienes o servicios, y 0 en otro caso.
+	\item aumentaBS: Variable binaria que toma el valor de 1 si la innovación tuvo impacto en ampliar la gama de bienes o servicios ofrecidos, y 0 en otro caso.
+	\item mantienePosicion: Variable binaria que toma el valor de 1 si la innovación tuvo impacto en mantener la posición de mercado o ingresar a uno nuevo, y 0 en otro caso.
+	\item aumentaProductividad: Variable binaria que toma el valor de 1 si la innovación tuvo impacto en aumentar la productividad, y 0 en otro caso.
+	\item reduceCostoFactores: Variable binaria que toma el valor de 1 si la innovación tuvo impacto en reducir los costos asociados a factores productivos, y 0 en otro caso.
+	\item reduceCostoLogistico: Variable binaria que toma el valor de 1 si la innovación tuvo impacto en reducir los costos asociados a logística de la empresa, y 0 en otro caso.
+	\item reduceCostoOtros: Variable binaria que toma el valor de 1 si la innovación tuvo impacto en reducir otros costos, como tributarios, de reciclaje o regulatorios, y 0 en otro caso.
+\end{enumerate}
+
+\section{Taxonomía de la innovación}
+
+\begin{enumerate}
+	\item innRadical: Variable numerica que indica el numero de bienes o servicios nuevos introducidos por la empresa al mercado.
+	\item innIncremental: Variable numerica que indica el numero de bienes o servicios significativamente mejorados introducidos por la empresa en el mercado.
+\end{enumerate}
+
+\section{Tipo de empresa innovadora}
+
+\begin{enumerate}
+	\item innovadorEstricto: Variable binaria que toma el valor de 1 si la firma, en el período de referencia de la encuesta, obtuvo al menos un bien o servicio nuevo o significativamente mejorado para el mercado internacional. 0 en otros casos.
+	\item innovadorAmplio: Variable binaria que toma el valor de 1 si la firma, en el período de referencia, obtuvo al menos un bien o servicio nuevo o significativamente mejorado para el mercado nacional o un bien o servicio nuevo o mejorado para la empresa, o que implementaron nuevos o significativamente mejorados métodos de prestación de servicios, producción, distribución, entrega, o sistemas logísticos o una forma organizacional o de comercialización nueva. 0 en otros casos
+	\item innovadorPotencial: Variable binaria que toma el valor de 1 si la firma, en el período de referencia, no había obtenido ninguna innovación, pero que reportaron tener en proceso o haber abandonado algún proyecto de innovación. 0 en otros casos.
+	\item noInnovadora: Variable binaria que toma el valor de 1 si la firma, en el período de referencia, no obtuvieron innovaciones, ni reportaron tener en proceso, o haber abandonado, algún proyecto para la obtención de Innovaciones. 0 en otros casos.
+	\item otroTipo: Variable binaria que toma el valor de 1 si la firma, en el período de referencia, no reporta estar en ninguna de las tipologias anteriores. 0 en otros casos.
+\end{enumerate}
+
+\section{Uso de TICs}
+
+\begin{enumerate}
+	\item usaTICs: Variable binaria que toma el valor de 1 si la firma, en el período de referencia, hizo uso de Tecnologías de información y telecomunicaciones. 0 en otro caso.
+\end{enumerate}
+
+\section{Networking de la innovacion}
+
+\begin{enumerate}
+	\item networkNoEmpresa: Variable binaria que toma el valor de 1 si la firma, en el período de referencia, coopero con clientes, consultores, universidades, centros de desarrollo tecnológico, centros de investigación autónomos, parques tecnológicos, centros regionales de productividad, organizaciones no gubernamentales o el gobierno para el desarrollo de actividades innovadoras. 0 en otro caso.
+	\item networkEmpresas: Variable binaria que toma el valor de 1 si la firma, en el período de referencia, coopero con empresas del mismo grupo o conglomerado, proveedores o competidores para el desarrollo de actividades innovadoras. 0 en otro caso.
+	\item modificaOtros: Variable binaria que toma el valor de 1 si la firma, en el período de referencia, hizo modificaciones a innovaciones de otras empresas. 0 en otro caso.
+	\item noNetwork:  Variable binaria que toma el valor de 1 si la firma no coopero con ninguno de los agentes anterior mencionados. 0 en otro caso.
+\end{enumerate}
+
+\section{Propiedad de la empresa}
+
+\begin{enumerate}
+	\item propietarioActual: Variable categorica que relaciona el parentesco de el mayor accionista o actual propietario de la empresa con el fundador, puede tomar 3 valores:
+		 \begin{enumerate}
+		 	\item 1 = El mayor accionista o propietario actual es el fundador.
+		 	\item 2 = El mayor accionista o propietario actual es familiar del fundador.
+		 	\item 3 = El mayor accionista o propietario actual es otra persona o institución.
+		 \end{enumerate}
+\end{enumerate}
+
+\section{Personal ocupado}
+
+\begin{enumerate}
+	\item totOcupados: Variable numerica que indica el total de personal ocupado en determinado periodo de tiempo. \textbf{Se reporta por año}.
+	\item catOcupados: Variable categórica que organiza las empresas por el numero de ocupados que tiene en determinado periodo de tiempo, puede tomar 4 valores (\textbf{se reporta por año}):
+	\begin{enumerate}
+		\item 1 = Menos de 10.
+		\item 2 = Entre 10 y 50.
+		\item 3 = Entre 50 y 200.
+		\item 4 = Mas de 200.
+	\end{enumerate}
+\end{enumerate}
+
+Todos los datos provienen de la Encuesta de Desarrollo e Innovación Tecnológica, y la Encuesta Anual Manufacturera para los periodos 2017, 2018, 2019 y 2020. Para mas información, ver: \textbf{\href{https://www.dane.gov.co/index.php/estadisticas-por-tema/industria/encuesta-anual-manufacturera-enam}{EAM}} y  \textbf{\href{https://www.dane.gov.co/index.php/estadisticas-por-tema/tecnologia-e-innovacion/encuesta-de-desarrollo-e-innovacion-tecnologica-edit}{EDIT}}.
+
+\vfill
+
+\noindent Contacto: \href{mailto:jtabordaj@uninorte.edu.co}{jtabordaj@uninorte.edu.co} \\
+Repositorio: \textbf{\href{https://github.com/jtabordaj/research_perilla}{GitHub}}
+
+\end{document}

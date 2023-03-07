@@ -13,3 +13,5 @@ if(theSurvey == 1718){
 }
 
 rm(list = ls())
+
+length(colnames(edit))
