@@ -44,12 +44,11 @@
 
 Si un dato tiene mas de una observacion en la misma encuesta, pues se captura sobre dos espacios de tiempo distintos, la base de datos agrega un numero de dos o cuatro digitos que corresponde al periodo de tiempo. 
 
-Los conceptos sobre tipo, taxonomía, tipologia y demás elementos relacionados a la innovación son tomados de la metodología oficial de la encuesta EDIT para 2017-2018.
-
 \begin{center}
 	\textbf{\textbf{Ejemplo}: valorAgregado18 indica que es el dato de valor agregado para 2018; totOcupados2017 indica que es el numero de ocupados totales para 2017.}
 \end{center}
 
+Los conceptos sobre tipo, taxonomía, tipologia y demás elementos relacionados a la innovación son tomados de la metodología oficial de la encuesta EDIT para 2017-2018.
 
 Las bases de datos se componen de 103 variables, repartidas en varios ejes temáticos de interés:
 
@@ -204,11 +203,56 @@ Las bases de datos se componen de 103 variables, repartidas en varios ejes temá
 	\item sniINNPulsa:  Variable binaria que toma el valor de 1 si la firma, durante el periodo de interés de la encuesta, coopero con INNPulsa para el desarrollo de actividades innovadoras, 0 en otro caso.
 \end{enumerate}
 
+\section{Obstáculos de recursos}
+
+\begin{enumerate}
+	\item obsRecursosPropios: Variable binaria que toma el valor de 1 si, durante el periodo de interés de la encuesta, la falta de recursos propios fue un obstáculo para la firma en el desarrollo de actividades innovadoras, 0 en otro caso.
+	\item obsFinancExterno: Variable binaria que toma el valor de 1 si, durante el periodo de interés de la encuesta, la dificultad para obtener financiamiento externo fue un obstáculo para la firma en el desarrollo de actividades innovadoras, 0 en otro caso.
+\end{enumerate}
+
+\section{Obstáculos legales o técnicos}
+
+\begin{enumerate}
+	\item obsApoyoPublico: Variable binaria que toma el valor de 1 si, durante el periodo de interés de la encuesta, la falta de financiamiento publico o información sobre mecanismos públicos fue un obstáculo para la firma en el desarrollo de actividades innovadoras, 0 en otro caso.
+	\item obsInformacion: Variable binaria que toma el valor de 1 si, durante el periodo de interés de la encuesta, la falta de información sobre el mercado o tecnologías relevantes fue un obstáculo para la firma en el desarrollo de actividades innovadoras, 0 en otro caso.
+	\item obsPersonal: Variable binaria que toma el valor de 1 si, durante el periodo de interés de la encuesta, la falta de personal calificado fue un obstáculo para la firma en el desarrollo de actividades innovadoras, 0 en otro caso.
+	\item obsRegulaciones: Variable binaria que toma el valor de 1 si, durante el periodo de interés de la encuesta, el cumplimiento de regulaciones y normativas similares fue un obstáculo para la firma en el desarrollo de actividades innovadoras, 0 en otro caso.
+	\item obsCooperacion: Variable binaria que toma el valor de 1 si, durante el periodo de interés de la encuesta, la falta de oportunidades para cooperar con otras empresas fue un obstáculo para la firma en el desarrollo de actividades innovadoras, 0 en otro caso.
+	\item obsDerechosProp: Variable binaria que toma el valor de 1 si, durante el periodo de interés de la encuesta, la insuficiencia del sistema de derechos de propiedad fue un obstáculo para la firma en el desarrollo de actividades innovadoras, 0 en otro caso.
+	\item obsInspeccion: Variable binaria que toma el valor de 1 si, durante el periodo de interés de la encuesta, la escasez de servicios de inspección fue un obstáculo para la firma en el desarrollo de actividades innovadoras, 0 en otro caso.
+	\item obsTramite: Variable binaria que toma el valor de 1 si, durante el periodo de interés de la encuesta, el tramite excesivo fue un obstáculo para la firma en el desarrollo de actividades innovadoras, 0 en otro caso.
+	\item obsIntermediacion: Variable binaria que toma el valor de 1 si, durante el periodo de interés de la encuesta, la demora de intermediación entre la banca comercial y lineas de crédito publico fue obstáculo para la firma en el desarrollo de actividades innovadoras, 0 en otro caso.
+	\item obsRequisitos: Variable binaria que toma el valor de 1 si, durante el periodo de interés de la encuesta, el cumplimiento de requisitos fue obstáculo para la firma en el desarrollo de actividades innovadoras, 0 en otro caso.
+	\item obsFinAtractiva: Variable binaria que toma el valor de 1 si, durante el periodo de interés de la encuesta, la falta de oportunidades de financiamiento atractivas fue obstáculo para la firma en el desarrollo de actividades innovadoras, 0 en otro caso.
+\end{enumerate}
+
+\section{Obstáculos de incertidumbre}
+
+\begin{enumerate}
+	\item obsDemanda: Variable binaria que toma el valor de 1 si, durante el periodo de interés de la encuesta, la incertidumbre sobre la demanda del bien o servicio innovador fue obstáculo  para la firma en el desarrollo de actividades innovadoras, 0 en otro caso.
+	\item obsTecnica: Variable binaria que toma el valor de 1 si, durante el periodo de interés de la encuesta, la incertidumbre sobre el éxito de la ejecución técnica del proyecto fue obstáculo  para la firma en el desarrollo de actividades innovadoras, 0 en otro caso.
+	\item  obsImitacion: Variable binaria que toma el valor de 1 si, durante el periodo de interés de la encuesta, la incertidumbre sobre potenciales imitaciones al bien o servicio innovador fue obstáculo  para la firma en el desarrollo de actividades innovadoras, 0 en otro caso.
+	\item  obsRentabilidad: Variable binaria que toma el valor de 1 si, durante el periodo de interés de la encuesta, la incertidumbre sobre rentabilidad del proyecto fue obstáculo  para la firma en el desarrollo de actividades innovadoras, 0 en otro caso.
+\end{enumerate}
+
+\section{Incentivos a la productividad}
+
+\begin{enumerate}
+	\item bonosGerenciales: Variable binaria que toma el valor de 1 si, durante el periodo de interés de la encuesta, la empresa otorgo bonos a cargos gerenciales como incentivo al cumplimiento de metas u otros objetivos, 0 en otro caso.
+	\item bonosNoGerenciales: Variable binaria que toma el valor de 1 si, durante el periodo de interés de la encuesta, la empresa otorgo bonos a cargos no gerenciales como incentivo al cumplimiento de metas u otros objetivos, 0 en otro caso.
+	\item ascensosGerenciales: Variable binaria que toma el valor de 1 si, durante el periodo de interés de la encuesta, la empresa asciende cargos gerenciales, 0 en otro caso.
+	\item ascensosNoGerenciales: Variable binaria que toma el valor de 1 si, durante el periodo de interés de la encuesta, la empresa asciende cargos no gerenciales, 0 en otro caso.
+	\item metasProduccion: Variable binaria que toma el valor de 1 si, durante el periodo de interés de la encuesta, la empresa uso metas de producción, 0 en otro caso.
+	\item indicadoresDesemp: Variable binaria que toma el valor de 1 si, durante el periodo de interés de la encuesta, la empresa uso indicadores de desempeño, 0 en otro caso.
+\end{enumerate}
+
+
 Todos los datos provienen de la Encuesta de Desarrollo e Innovación Tecnológica, y la Encuesta Anual Manufacturera para los periodos 2017, 2018, 2019 y 2020. Para mas información, ver: \textbf{\href{https://www.dane.gov.co/index.php/estadisticas-por-tema/industria/encuesta-anual-manufacturera-enam}{EAM}} y  \textbf{\href{https://www.dane.gov.co/index.php/estadisticas-por-tema/tecnologia-e-innovacion/encuesta-de-desarrollo-e-innovacion-tecnologica-edit}{EDIT}}.
 
 \vfill
 
 \noindent Contacto: \href{mailto:jtabordaj@uninorte.edu.co}{jtabordaj@uninorte.edu.co} \\
 Repositorio: \textbf{\href{https://github.com/jtabordaj/research_perilla}{GitHub}}
+
 
 \end{document}
