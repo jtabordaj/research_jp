@@ -127,6 +127,81 @@ Las bases de datos se componen de 103 variables, repartidas en varios ejes temá
 		\item 3 = Entre 50 y 200.
 		\item 4 = Mas de 200.
 	\end{enumerate}
+	\item ocupadosACTI: Variable numerica que indica el total de personal ocupado en actividades innovadoras sobre determinado periodo de tiempo. \textbf{Se reporta por año}.
+	\item ratioActi: Variable numerica que indica la razon de personal ocupado en actividades innovadoras sobre los ocupados totales. La formula de calculo es $ oACTI/ oTotal $, donde oActi son ocupados en ACTI, y oTotal son ocupados totales. \textbf{Se reporta por año}.
+\end{enumerate}
+
+\section{Actividad Económica}
+
+\begin{enumerate}
+	\item ciiu4Digitos: Variable categórica numerica que indica el código de Clasificación Industrial Internacional Uniforme (ISIC) de la empresa. En este caso, para la sección C (manufacturas). El código tiene especificidad de 4 dígitos, donde el primero indica la sección, el segundo el sector y los dos últimos el subsector. Para mas informacion:  \href{https://www.dane.gov.co/files/sen/nomenclatura/ciiu/CIIU_Rev_4_AC2020.pdf}{\textbf{Aqui}}
+\end{enumerate}
+
+\section{Localización espacial}
+
+\begin{enumerate}
+	\item dptoDivipola: Variable categórica numerica que indica la ubicación de la firma según la clasificación \href{https://geoportal.dane.gov.co/geovisores/territorio/consulta-divipola-division-politico-administrativa-de-colombia/}{\textbf{DIVIPOLA}} del DANE para departamentos y municipios de Colombia. 
+	\item region: Variable categórica que indica la region de Colombia sobre la cual esta ubicada la firma, puede adoptar los siguientes valores:
+		\begin{enumerate}
+			\item Caribe: Región Caribe
+			\item Central: Región Central, incluyendo Bogotá D.C 
+			\item Pacifico: Región pacifica
+			\item Orinoquia: Región de la Orinoquia
+		\end{enumerate}
+\end{enumerate} 
+
+\section{Métricas industriales}
+
+\begin{enumerate}
+	\item valorAgregado: Variable numerica que indica el valor agregado según la metodología del DANE, el cual la entiende como la diferencia entre la producción bruta y el valor intermedio. Esta expresada en miles de millones de pesos. \textbf{Se reporta por año}.
+	\item productividadL: Variable numerica que indica la productividad del trabajo, definida como la razón de valor agregado sobre el total de empleados en la firma. Esta expresada en miles de millones de pesos. \textbf{Se reporta por año}.
+	\item ratioX: Variable numerica que indica la razón de venta hecha al extranjero, es decir, que proporción de las ventas totales fueron ventas hechas al extranjero. La formula de calculo es definida como $ VX / VEN $, donde VX es ventas al extranjero y VEN es ventas totales. \textbf{Se reporta por año}.
+	\item ratioM: Variable numerica que indica la razón de compra de materias primas hechas al extranjero, es decir, relativo a las ventas totales, cuanta materia prima se compro al extranjero. La formula de calculo es definida como $ CX/VEN $, donde CX es compra al extranjero y VEN son ventas totales. \textbf{Se reporta por año}
+	\item inversión: Variable numerica que indica la inversion de la firma, definida como $ ACTI/VA*100 $, donde ACTI son actividades innovadoras y VA es valor agregado. \textbf{Se reporta por año}.
+\end{enumerate}
+
+\section{Características del capital humano}
+
+\begin{enumerate}
+	\item educadosColegio: Variable numerica que indica el numero de ocupados que tienen educacion primaria o bachillerato. \textbf{Se reporta por año}.
+	\item educadosSuperior: Variable numerica que indica el numero de ocupados que tienen educación superior (pre grado, técnico o tecnologo).  \textbf{Se reporta por año}.
+	\item educadosPosgrado: Variable numerica que indica el numero de ocupados que tienen educación de posgrado (maestría, especialización, doctorado, pos-doctorado).  \textbf{Se reporta por año}.
+	\item educadosOtros: Variable numerica que indica el numero de ocupados que no tienen ninguno de los tres niveles de educación formal descritos anteriormente. \textbf{Se reporta por año}.
+	\item ocupadosProduccion: Variable numerica que indica el numero de ocupados, cuya responsabilidad en la empresa es actividades de producción. 
+	\item ratioProduccion: Variable numerica que indica la proporción de ocupados dedicados a actividades de producción sobre el total de ocupados, la formula de calculo es $ ocupA / ocupT $, donde ocupA es la cantidad de ocupados en la actividad y ocupT son los ocupados totales.
+	\item ocupadosID: Variable numerica que indica el numero de ocupados, cuya responsabilidad en la empresa es actividades de I+D. 
+	\item ratioID: Variable numerica que indica la proporción de ocupados dedicados a actividades de I+D sobre el total de ocupados, la formula de calculo es $ ocupA / ocupT $, donde ocupA es la cantidad de ocupados en la actividad y ocupT son los ocupados totales.
+	\item ocupadosAdmin: Variable numerica que indica el numero de ocupados, cuya responsabilidad en la empresa es actividades de administración. 
+	\item ratioAdmin: Variable numerica que indica la proporción de ocupados dedicados a actividades de administración sobre el total de ocupados, la formula de calculo es $ ocupA / ocupT $, donde ocupA es la cantidad de ocupados en la actividad y ocupT son los ocupados totales.
+	\item ocupadosMarketing: Variable numerica que indica el numero de ocupados, cuya responsabilidad en la empresa es actividades de mercadeo. 
+	\item ratioMarketing: Variable numerica que indica la proporción de ocupados dedicados a actividades de mercadeo sobre el total de ocupados, la formula de calculo es $ ocupA / ocupT $, donde ocupA es la cantidad de ocupados en la actividad y ocupT son los ocupados totales.
+	\item hayMujeres: Variable binaria que toma el valor de 1 si hay mujeres entre los ocupados dedicados a actividades innovadoras, 0 en otro caso.
+\end{enumerate}
+
+\section{Fuentes de financiamiento}
+
+\begin{enumerate}
+	\item recursosPropios: Variable numerica que indica la cantidad de recursos propios invertidos por la firma en actividades innovadoras. En miles de pesos. \textbf{Se reporta por año}.
+	\item recursosBanca: Variable numerica que indica la cantidad de recursos de la banca invertidos por la firma en actividades innovadoras. En miles de pesos. \textbf{Se reporta por año}.
+	\item recursosConglomerado: Variable numerica que indica la cantidad de recursos del grupo empresarial o conglomerado invertidos por la firma en actividades innovadoras. En miles de pesos. \textbf{Se reporta por año}.
+	\item recursosPublicos: Variable numerica que indica la cantidad de recursos públicos invertidos por la firma en actividades innovadoras. En miles de pesos. \textbf{Se reporta por año}.
+	\item recursosEmpresas: Variable numerica que indica la cantidad de recursos de otras empresas invertidos por la firma en actividades innovadoras. En miles de pesos. \textbf{Se reporta por año}.
+	\item recursosOtros: Variable numerica que indica la cantidad de recursos de otras fuentes (fondos de capital privado, donaciones) invertidos por la firma en actividades innovadoras. En miles de pesos. \textbf{Se reporta por año}.
+	\item contratoEstado: Variable binaria que toma el valor de 1 si la firma celebro contratos con el estado en el periodo de interés de la encuesta, 0 en otros casos.
+\end{enumerate}
+
+\section{Sistema Nacional de Innovación}
+
+\begin{enumerate}
+	\item sniSENA:  Variable binaria que toma el valor de 1 si la firma, durante el periodo de interés de la encuesta, coopero con el SENA para el desarrollo de actividades innovadoras, 0 en otro caso.
+	\item sniCamaraComercio:  Variable binaria que toma el valor de 1 si la firma, durante el periodo de interés de la encuesta, coopero con la Cámara de Comercio para el desarrollo de actividades innovadoras, 0 en otro caso.
+	\item sniICONTEC:  Variable binaria que toma el valor de 1 si la firma, durante el periodo de interés de la encuesta, coopero con ICONTEC para el desarrollo de actividades innovadoras, 0 en otro caso.
+	\item sniUnivSNCTI:  Variable binaria que toma el valor de 1 si la firma, durante el periodo de interés de la encuesta, coopero con una Universidad registrada en el Sistema Nacional de Ciencia, Tecnología e Innovación para el desarrollo de actividades innovadoras, 0 en otro caso.
+	\item sniSIC:  Variable binaria que toma el valor de 1 si la firma, durante el periodo de interés de la encuesta, coopero con la Superintendencia de Industria y Comercio para el desarrollo de actividades innovadoras, 0 en otro caso.
+	\item sniMinciencias:  Variable binaria que toma el valor de 1 si la firma, durante el periodo de interés de la encuesta, coopero con el Ministerio de Ciencias para el desarrollo de actividades innovadoras, 0 en otro caso.
+	\item sniConsultores:  Variable binaria que toma el valor de 1 si la firma, durante el periodo de interés de la encuesta, coopero con consultores para el desarrollo de actividades innovadoras, 0 en otro caso.
+	\item sniProcolombia:  Variable binaria que toma el valor de 1 si la firma, durante el periodo de interés de la encuesta, coopero con Procolombia para el desarrollo de actividades innovadoras, 0 en otro caso.
+	\item sniINNPulsa:  Variable binaria que toma el valor de 1 si la firma, durante el periodo de interés de la encuesta, coopero con INNPulsa para el desarrollo de actividades innovadoras, 0 en otro caso.
 \end{enumerate}
 
 Todos los datos provienen de la Encuesta de Desarrollo e Innovación Tecnológica, y la Encuesta Anual Manufacturera para los periodos 2017, 2018, 2019 y 2020. Para mas información, ver: \textbf{\href{https://www.dane.gov.co/index.php/estadisticas-por-tema/industria/encuesta-anual-manufacturera-enam}{EAM}} y  \textbf{\href{https://www.dane.gov.co/index.php/estadisticas-por-tema/tecnologia-e-innovacion/encuesta-de-desarrollo-e-innovacion-tecnologica-edit}{EDIT}}.

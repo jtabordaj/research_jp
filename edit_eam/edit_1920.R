@@ -443,3 +443,5 @@ edit <- edit %>% mutate(gastoACTI2020 = II1R10C2) # Gasto en ACTI 2018, miles de
 
 edit <- edit %>% mutate(inversion2019 = (gastoACTI2019/valorAgregado2019)*100) # Inversion 2017 por ACTI/VA*100
 edit <- edit %>% mutate(inversion2020 = (gastoACTI2020/valorAgregado2020)*100) # Inversion 2018 por ACTI/VA*100
+
+variables <- data.frame(colnames(edit))
