@@ -12,12 +12,3 @@ if(theSurvey == 1718){
     paste("Wrote ",substitute(data1920)," at ./edit_eam/outputs/data1920.xlsx", sep = "")
 }
 rm(list = ls())
-
-## To read outputs
-
-source("./edit_eam/dependencies.R")
-fileListO <- list.files("./edit_eam/outputs")
-for(i in fileListO){
-    path <- paste("./edit_eam/outputs/",i, sep = "")
-    assign(paste(i, sep = ""), read_xlsx(path), envir = .GlobalEnv)
-}
