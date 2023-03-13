@@ -1,4 +1,4 @@
-source("./dependencies.R")
+source("./geih/dependencies.R")
 
 grabData("ocupados", fileExtension, 1, 12)
 allDataFrames <- names(which(unlist(eapply(.GlobalEnv, is.data.frame))))
@@ -83,6 +83,8 @@ ocupados <- ocupados %>% mutate(region = ifelse(DPTO == 08 | DPTO == 13 | DPTO =
     ifelse(DPTO == 50 | DPTO == 18, "Oriental", NA))))
 )
 
+ocupados <- ocupados %>% mutate(factorExp = FEX_C_2011)
+
 
 # Export
 ocupadosWrite <- c("DIRECTORIO", 
@@ -98,14 +100,15 @@ ocupadosWrite <- c("DIRECTORIO",
     "subempleadoIngresos",
     "cotizaPension",
     "posicionOcupacional",
-    "region"
+    "region",
+    "factorExp"
 )
 
 writeOcupados <- ocupados
 writeOcupados <- writeOcupados %>% select(all_of(ocupadosWrite))
 
-write_xlsx(writeOcupados, paste("./output/ocupados",theYear,".xlsx", sep = ""))
-paste("Wrote ",substitute(ocupados)," at ./output/ocupados",theYear,".xslx", sep = "")
+write_xlsx(writeOcupados, paste("./geih/output/ocupados",theYear,".xlsx", sep = ""))
+paste("Wrote ",substitute(ocupados)," at ./geih/output/ocupados",theYear,".xslx", sep = "")
 
 
 ### PUEDE SER UTIL MAS ADELANTE

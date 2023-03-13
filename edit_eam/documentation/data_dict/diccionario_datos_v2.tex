@@ -42,15 +42,24 @@
 	\item A nivel firma: NORDEMP
 \end{enumerate}
 
-Si un dato tiene mas de una observacion en la misma encuesta, pues se captura sobre dos espacios de tiempo distintos, la base de datos agrega un numero de dos o cuatro digitos que corresponde al periodo de tiempo. 
+Puede ocurrir que, en una encuesta, el dato se capture en una sola ocasión. En ese caso, se agrega un guion bajo (\_) seguido de un identificador de 4 dígitos que relaciona la variable con la encuesta.
 
 \begin{center}
-	\textbf{\textbf{Ejemplo}: valorAgregado18 indica que es el dato de valor agregado para 2018; totOcupados2017 indica que es el numero de ocupados totales para 2017.}
+	\textbf{\textbf{Ejemplo}: hayMujeres\_1718 y hayMujeres\_1920 indica que la variable solo se captura una vez en cada encuesta, por lo que el sufijo "\_1718" se refiere al valor para el periodo 2017-2018, y el sufijo "\_1920" se refiere al valor para el periodo 2019-2020.}
 \end{center}
+
+Si un dato tiene mas de una observación en la misma encuesta, pues se captura sobre dos espacios de tiempo distintos, la base de datos agrega un numero de dos o cuatro dígitos que corresponde al periodo de tiempo \textbf{antes} del sufijo mencionado anteriormente. 
+
+\begin{center}
+	\textbf{\textbf{Ejemplo}: valorAgregado18\_1718 indica que es el dato de valor agregado para 2018 y proviene de la encuesta evaluada para el periodo 2017-2018; totOcupados2019\_1920 indica que es el numero de ocupados totales para 2019 y proviene de la encuesta para el periodo 2019-2020.}
+\end{center}
+
+
+
 
 Los conceptos sobre tipo, taxonomía, tipologia y demás elementos relacionados a la innovación son tomados de la metodología oficial de la encuesta EDIT para 2017-2018.
 
-Las bases de datos se componen de 103 variables, repartidas en varios ejes temáticos de interés:
+Las bases de datos se componen de 103 variables únicas, repartidas en varios ejes temáticos de interés:
 
 \section{Tipo de innovación}
 
