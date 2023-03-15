@@ -1,2 +1,2 @@
 
-Research assistancy with Prof. Dr. Juan Perilla
+Research assistantship with Prof. Dr. Juan Perilla
